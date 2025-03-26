@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private PlayerController playerController;
+    private ScoreManager scoreManager;
 
     private void Awake()
     {
@@ -35,11 +36,13 @@ public class GameManager : MonoBehaviour
     private void LoadSceneInit()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        scoreManager = FindAnyObjectByType<ScoreManager>();
     }
     IEnumerator GameStart()
     {
         yield return null;
         playerController.InitPlayer();
+        scoreManager.InitData();
     }
 
 }
