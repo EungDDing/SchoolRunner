@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour, IScroll
         obj.TryGetComponent<PlayerController>(out playerController);
 
         gameObject.TryGetComponent<Rigidbody>(out rig);
-        scrollSpeed = 10.0f;
+        scrollSpeed = 20.0f;
         flyForce = 7.0f;
     }
     

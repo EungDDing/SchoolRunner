@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     private Rigidbody rig;
     private Vector3 targetPosition;
-    private float[] lanes = { -3.0f, 0, 3.0f };
+    private float[] lanes = { -3.5f, 0, 3.5f };
     private int currentLane = 1;
 
     private Vector2 touchStartPos;
