@@ -6,6 +6,7 @@ public abstract class ItemBase : MonoBehaviour, IScroll
 {
     [SerializeField] private float speed = 20.0f;
     private ScoreManager scoreManager;
+    
     public ScoreManager ScoreManager
     {
         get => scoreManager;
@@ -19,7 +20,11 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     {
         Scroll();
     }
-    public abstract void ItemGet();
+    public void SetMain()
+    {
+        Debug.Log(gameObject.name);
+    }
+    public abstract void ItemGet(bool isMain);
     // interface
     public void Scroll()
     {

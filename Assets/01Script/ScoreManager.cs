@@ -1,51 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int exercise;
-    private int study;
-    private int sing;
+    private int dumbbell;
+    private int book;
+    private int mic;
+    private int game;
 
     public delegate void ScoreChange(int value);
-    public event ScoreChange OnChangeExercise;
-    public event ScoreChange OnChangeStudy;
-    public event ScoreChange OnChangeSing;
-    public int Exercise
+    public event ScoreChange OnChangeDumbbell;
+    public event ScoreChange OnChangeBook;
+    public event ScoreChange OnChangeMic;
+    public event ScoreChange OnChangeGame;
+    public int Dumbbell
     {
-        get => exercise;
+        get => dumbbell;
         set
         {
-            exercise = value;
-            OnChangeExercise?.Invoke(exercise);
+            dumbbell = value;
+            if (dumbbell <= 0)
+            {
+                dumbbell = 0;
+            }
+            OnChangeDumbbell?.Invoke(dumbbell);
         }
     }
-    public int Study
+    public int Book
     {
-        get => study;
+        get => book;
         set
         {
-            study = value;
-            OnChangeStudy?.Invoke(study);
+            book = value;
+            if (book <= 0)
+            {
+                book = 0;
+            }
+            OnChangeBook?.Invoke(book);
         }
     }
-    public int Sing
+    public int Mic
     {
-        get => sing;
+        get => mic;
         set
         {
-            sing = value;
-            OnChangeSing?.Invoke(sing);
+            mic = value;
+            if (mic <= 0)
+            {
+                mic = 0;
+            }
+            OnChangeMic?.Invoke(mic);
+        }
+    }
+    public int Game
+    {
+        get => game;
+        set
+        {
+            game = value;
+            if (game <= 0)
+            {
+                game = 0;
+            }
+            OnChangeGame?.Invoke(game);
         }
     }
     public void InitData()
     {
-        Exercise = 0;
-        Study = 0;
-        Sing = 0;
-        Debug.Log(Exercise);
-        Debug.Log(Study);
-        Debug.Log(Sing);
+        Dumbbell = 0;
+        Book = 0;
+        Mic = 0;
+        Game = 0;
+        Debug.Log(Dumbbell);
+        Debug.Log(Book);
+        Debug.Log(Mic);
+        Debug.Log(Game);
     }
 }

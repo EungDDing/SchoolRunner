@@ -11,6 +11,5 @@ public class ScrollMap : MonoBehaviour
     private void Update()
     {
         transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
-        Debug.Log(Time.time);
     }
 }
