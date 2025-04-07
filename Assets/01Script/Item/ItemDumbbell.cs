@@ -1,21 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemDumbbell : ItemBase
 {
-    public override void ItemGet(bool isMain)
+    public override void ItemGet()
     {
-        if (isMain)
-        {
-            ScoreManager.Dumbbell++;
-        }
-        else
-        {
-            ScoreManager.Book--;
-            ScoreManager.Mic--;
-            ScoreManager.Game--;
-        }
+        ScoreManager.Dumbbell++;
+        
         Destroy(gameObject);
     }
 }

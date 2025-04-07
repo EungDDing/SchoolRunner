@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     private bool isMoveOnce = false;
 
     private int currentHP;
-    private int maxHP = 5;
+    private int maxHP = 3;
 
-    public delegate void ChangeHP();
+    public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
     public int CurrentHP
     {
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             currentHP = value;
-            OnChangeHP?.Invoke();
+            OnChangeHP?.Invoke(currentHP);
         }
     }
     private void Awake()
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         if (CurrentHP <= 0)
         {
             // game over
-            Debug.Log("°ÔÀÓ Á¾·á");
+            Debug.Log("ê²Œìž„ ì¢…ë£Œ");
         }
     }
 }

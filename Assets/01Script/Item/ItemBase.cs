@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     {
         Debug.Log(gameObject.name);
     }
-    public abstract void ItemGet(bool isMain);
+    public abstract void ItemGet();
     // interface
     public void Scroll()
     {

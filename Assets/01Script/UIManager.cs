@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bookValue;
     [SerializeField] private TextMeshProUGUI gameValue;
     [SerializeField] private TextMeshProUGUI micValue;
+
+    [SerializeField] private Image[] heart;
 
     private PlayerController playerController;
     private ScoreManager scoreManager;
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeBook += ChangeStudyValue;
         scoreManager.OnChangeMic += ChangeSingValue;
         scoreManager.OnChangeGame += ChangeGameValue;
+        playerController.OnChangeHP += ChangeHeart;
     }
     private void OnDisable()
     {
@@ -47,6 +50,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeBook -= ChangeStudyValue;
         scoreManager.OnChangeMic -= ChangeSingValue;
         scoreManager.OnChangeGame -= ChangeGameValue;
+        playerController.OnChangeHP -= ChangeHeart;
     }
     public void ChangeDumbbellValue(int value)
     {
@@ -63,6 +67,20 @@ public class UIManager : MonoBehaviour
     public void ChangeGameValue(int value)
     {
         gameValue.text = value.ToString();
+    }
+    public void ChangeHeart(int hp)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < hp)
+            {
+                heart[i].enabled = true;
+            }
+            else
+            {
+                heart[i].enabled = false;
+            }
+        }
     }
     public void ActiveMainCoinUI(string name)
     {

@@ -1,21 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemGame : ItemBase
 {
-    public override void ItemGet(bool isMain)
+    public override void ItemGet()
     {
-        if (isMain)
-        {
-            ScoreManager.Game++;
-        }
-        else
-        {
-            ScoreManager.Book--;
-            ScoreManager.Dumbbell--;
-            ScoreManager.Mic--;
-        }
+        ScoreManager.Game++;
+
         Destroy(gameObject);
     }
 }
