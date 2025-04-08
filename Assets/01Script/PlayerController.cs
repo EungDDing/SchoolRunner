@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         TryGetComponent<Rigidbody>(out rig);
         CurrentHP = maxHP;
-        moveSpeed = 10.0f;
-        jumpForce = 7.0f;
+        moveSpeed = 12.0f;
+        jumpForce = 25.0f;
     }
     private void Update()
     {

@@ -19,24 +19,24 @@ public class SpawnObject : MonoBehaviour
     public void SpawnRandomObject()
     {
         spawnRate = Random.Range(1, 1000);
-
-        if (spawnRate < 200)
+        
+        if (spawnRate < 250)
         {
-            obj = Instantiate(obstaclePrefab, transform.position, Quaternion.identity);
+            obj = Instantiate(obstaclePrefab, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
         }
         else if (spawnRate < 400)
         {
             obj = Instantiate(dumbbellPrefab, transform.position, Quaternion.identity);
         }
-        else if (spawnRate < 600)
+        else if (spawnRate < 550)
         {
             obj = Instantiate(bookPrefab, transform.position, Quaternion.identity);
         }
-        else if (spawnRate < 800)
+        else if (spawnRate < 700)
         {
             obj = Instantiate(micPrefab, transform.position, Quaternion.identity);
         }
-        else if (spawnRate < 1000)
+        else if (spawnRate < 850)
         {
             obj = Instantiate(gamePrefab, transform.position, Quaternion.identity);
         }
