@@ -32,8 +32,6 @@ public class UIManager : MonoBehaviour
         obj.TryGetComponent<ItemManager>(out itemManager);
         obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
-
-        itemManager.OnSetMain += ActiveMainCoinUI;
        
     }
     private void OnEnable()
@@ -80,24 +78,6 @@ public class UIManager : MonoBehaviour
             {
                 heart[i].enabled = false;
             }
-        }
-    }
-    public void ActiveMainCoinUI(string name)
-    {
-        switch (name)
-        {
-            case "CoinDumbbell":
-                dumbbellCoinUI.SetActive(true);
-                break;
-            case "CoinBook":
-                bookCoinUI.SetActive(true);
-                break;
-            case "CoinMic":
-                micCoinUI.SetActive(true);
-                break;
-            case "CoinGame":
-                gameCoinUI.SetActive(true);
-                break;
         }
     }
 }

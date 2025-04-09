@@ -10,9 +10,6 @@ public class ItemManager : MonoBehaviour
     private string mainCoinName;
     private bool isMainSet;
 
-    public delegate void SetMainCoin(string name);
-    public event SetMainCoin OnSetMain;
-
     private void Awake()
     {
         mainCoin = null;

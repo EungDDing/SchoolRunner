@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class Obstacle : MonoBehaviour, IScroll
     // interface
     public void Scroll()
     {
-        transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
+        transform.position += Vector3.back * (scrollSpeed * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider other)
     {
