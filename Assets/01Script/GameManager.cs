@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         LoadSceneInit();
         StartCoroutine(GameStart());
     }
-    private void LoadSceneInit()
+    public void LoadSceneInit()
     {
         playerController = FindAnyObjectByType<PlayerController>();
         scoreManager = FindAnyObjectByType<ScoreManager>();
