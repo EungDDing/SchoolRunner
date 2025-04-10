@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollMap : MonoBehaviour
 {
-    [SerializeField] private float scrollSpeed = 15.0f;
+    [SerializeField] private float scrollSpeed = 20.0f;
     private float resetZ = 20.0f;
     private Vector3 resetPosition = new Vector3(0.0f, 0.0f, 20.0f);
 
