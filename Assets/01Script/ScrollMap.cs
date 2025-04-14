@@ -14,13 +14,20 @@ public class ScrollMap : MonoBehaviour, IScroll
     {
         Scroll();
     }
-    private void OnEnable()
+    private void Start()
     {
-        if (scrollManager == null)
+        StartCoroutine(GetScrollManager());
+    }
+    private IEnumerator GetScrollManager()
+    {
+        while (scrollManager == null)
         {
             scrollManager = FindObjectOfType<ScrollManager>();
+            yield return null;
         }
-
+    }
+    private void OnEnable()
+    {
         if (scrollManager != null)
         {
             scrollManager.AddScrollObject(this);

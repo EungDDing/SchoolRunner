@@ -21,14 +21,19 @@ public class Obstacle : MonoBehaviour, IScroll
         gameObject.TryGetComponent<Rigidbody>(out rig);
         scrollSpeed = 0.0f;
         flyForce = 7.0f;
+
+        StartCoroutine(GetScrollManager());
+    }
+    private IEnumerator GetScrollManager()
+    {
+        while (scrollManager == null)
+        {
+            scrollManager = FindObjectOfType<ScrollManager>();
+            yield return null;
+        }
     }
     private void OnEnable()
     {
-        if (scrollManager == null)
-        {
-            scrollManager = FindObjectOfType<ScrollManager>();
-        }
-
         if (scrollManager != null)
         {
             scrollManager.AddScrollObject(this);

@@ -17,14 +17,19 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     {
         GameObject obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
+
+        StartCoroutine(GetScrollManager());
+    }
+    private IEnumerator GetScrollManager()
+    {
+        while (scrollManager == null)
+        {
+            scrollManager = FindObjectOfType<ScrollManager>();
+            yield return null;
+        }
     }
     private void OnEnable()
     {
-        if (scrollManager == null)
-        {
-            scrollManager = FindObjectOfType<ScrollManager>();
-        }
-
         if (scrollManager != null)
         {
             scrollManager.AddScrollObject(this);
