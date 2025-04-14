@@ -1,22 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-                instance = new GameManager();
-            return instance;
-        }
-    }
     private PlayerController playerController;
     private ScoreManager scoreManager;
+    private ScrollManager scrollManager;
 
     private void Awake()
     {
@@ -29,20 +22,27 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+    }
+    private void Start()
+    {
         LoadSceneInit();
-        StartCoroutine(GameStart());
     }
     public void LoadSceneInit()
     {
         playerController = FindAnyObjectByType<PlayerController>();
         scoreManager = FindAnyObjectByType<ScoreManager>();
+        scrollManager = FindAnyObjectByType<ScrollManager>();
+    }
+    public void StartGame()
+    {
+        StartCoroutine(GameStart());
     }
     IEnumerator GameStart()
     {
-        yield return null;
         playerController.InitPlayer();
+        yield return new WaitForSeconds(2.0f);
         scoreManager.InitData();
+        scrollManager.InitScrollManager(20.0f);
     }
 
 }

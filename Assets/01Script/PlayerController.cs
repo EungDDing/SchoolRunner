@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    private float forwardSpeed = 15.0f;
     private Rigidbody rig;
     private Vector3 targetPosition;
     private float[] lanes = { -3.5f, 0, 3.5f };
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private int currentHP;
     private int maxHP = 3;
+    private bool isInit = false;
+    private bool isGameStart = false;
 
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
@@ -40,13 +43,21 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        MoveSide();
-        Jump();
+        if (isGameStart)
+        {
+            transform.position += Vector3.forward * (forwardSpeed * Time.deltaTime);
+        }
+        if (isInit)
+        {
+            MoveSide();
+            Jump();
+        } 
     }
     public void InitPlayer()
     {
         CurrentHP = maxHP;
         Debug.Log("intialize");
+        GameStart();
     }
     private void MoveSide()
     {
@@ -132,6 +143,18 @@ public class PlayerController : MonoBehaviour
         {
             isDrag = false;
         }
+    }
+    private void GameStart()
+    {
+        isGameStart = true;
+        StartCoroutine(SetInit());
+    }
+    private IEnumerator SetInit()
+    {
+        yield return new WaitForSeconds(2.0f);
+        isGameStart = false;
+        isInit = true;
+        transform.position = new Vector3(0.0f, 2.0f, -20.0f);
     }
     private void OnCollisionEnter(Collision collision)
     {

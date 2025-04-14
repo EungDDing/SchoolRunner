@@ -6,15 +6,6 @@ public class SpawnObjectManager : MonoBehaviour
 {
     public static SpawnObjectManager instance;
 
-    public static SpawnObjectManager Instance
-    {
-        get
-        {
-            if (instance == null)
-                instance = new SpawnObjectManager();
-            return instance;
-        }
-    }
     [SerializeField] private GameObject[] objectPrefabs;
     private Queue<GameObject>[] objectPoolQueue;
 

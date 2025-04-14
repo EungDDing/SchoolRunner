@@ -4,17 +4,38 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour, IScroll
 {
-    [SerializeField] private float speed = 20.0f;
+    [SerializeField] private float speed = 0.0f;
     private ScoreManager scoreManager;
-    
+
+    private ScrollManager scrollManager;
+
     public ScoreManager ScoreManager
     {
         get => scoreManager;
     }
-    private void Awake()
+    private void Start()
     {
         GameObject obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
+    }
+    private void OnEnable()
+    {
+        if (scrollManager == null)
+        {
+            scrollManager = FindObjectOfType<ScrollManager>();
+        }
+
+        if (scrollManager != null)
+        {
+            scrollManager.AddScrollObject(this);
+        }
+    }
+    private void OnDisable()
+    {
+        if (scrollManager != null)
+        {
+            scrollManager.RemoveScrollObject(this);
+        }
     }
     private void Update()
     {
@@ -29,5 +50,10 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     public void Scroll()
     {
         transform.position += -Vector3.forward * (speed * Time.deltaTime);
+    }
+
+    public void SetScrollSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 }
