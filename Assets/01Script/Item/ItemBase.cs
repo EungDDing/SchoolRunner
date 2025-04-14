@@ -27,6 +27,8 @@ public abstract class ItemBase : MonoBehaviour, IScroll
             scrollManager = FindObjectOfType<ScrollManager>();
             yield return null;
         }
+
+        scrollManager.AddScrollObject(this);
     }
     private void OnEnable()
     {

@@ -31,6 +31,8 @@ public class Obstacle : MonoBehaviour, IScroll
             scrollManager = FindObjectOfType<ScrollManager>();
             yield return null;
         }
+
+        scrollManager.AddScrollObject(this);
     }
     private void OnEnable()
     {
