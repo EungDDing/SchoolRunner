@@ -34,13 +34,6 @@ public class Obstacle : MonoBehaviour, IScroll
 
         scrollManager.AddScrollObject(this);
     }
-    private void OnEnable()
-    {
-        if (scrollManager != null)
-        {
-            scrollManager.AddScrollObject(this);
-        }
-    }
     private void OnDisable()
     {
         if (scrollManager != null)
