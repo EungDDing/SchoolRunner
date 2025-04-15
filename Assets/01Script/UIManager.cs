@@ -20,15 +20,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image[] heart;
 
-    [SerializeField] private Button startButton;
-
-    [SerializeField] private Canvas runCanvas;
-    [SerializeField] private Canvas lobbyCanvas;
-
-    [SerializeField] private Image configPopup;
-    [SerializeField] private Button configButton;
-    [SerializeField] private Button configCloseButton;
-
     private PlayerController playerController;
     private ScoreManager scoreManager;
     private ItemManager itemManager;
@@ -41,13 +32,7 @@ public class UIManager : MonoBehaviour
         obj.TryGetComponent<ItemManager>(out itemManager);
         obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
-    }
-    private void Start()
-    {
-        startButton.onClick.AddListener(ChangeCanvas);
-
-        configButton.onClick.AddListener(OpenConfigPopup);
-        configCloseButton.onClick.AddListener(CloseConfigPopup);
+       
     }
     private void OnEnable()
     {
@@ -94,24 +79,5 @@ public class UIManager : MonoBehaviour
                 heart[i].enabled = false;
             }
         }
-    }
-    private void OpenConfigPopup()
-    {
-        configPopup.gameObject.SetActive(true);
-    }
-    private void CloseConfigPopup()
-    {
-        configPopup.gameObject.SetActive(false);
-    }
-    private void ChangeCanvas()
-    {
-        lobbyCanvas.gameObject.SetActive(false);
-        StopAllCoroutines();
-        StartCoroutine(OnRunCanvas());
-    }
-    private IEnumerator OnRunCanvas()
-    {
-        yield return new WaitForSeconds(2.0f);
-        runCanvas.gameObject.SetActive(true);
     }
 }
