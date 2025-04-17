@@ -8,7 +8,7 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     [SerializeField] private float speed = 0.0f;
     private ScoreManager scoreManager;
     private ObjectType type;
-    private ScrollManager scrollManager;
+    private bool isScroll = false;
 
     public ScoreManager ScoreManager
     {
@@ -20,30 +20,19 @@ public abstract class ItemBase : MonoBehaviour, IScroll
         obj.TryGetComponent<ScoreManager>(out scoreManager);
 
         mainCamera = Camera.main;
-
-        StartCoroutine(GetScrollManager());
     }
-    private IEnumerator GetScrollManager()
+    private void OnEnable()
     {
-        while (scrollManager == null)
-        {
-            scrollManager = FindObjectOfType<ScrollManager>();
-            yield return null;
-        }
-
-        scrollManager.AddScrollObject(this);
-    }
-    private void OnDisable()
-    {
-        if (scrollManager != null)
-        {
-            scrollManager.RemoveScrollObject(this);
-        }
+        SetScrollSpeed(20.0f);
+        SetEnableScroll(true);
     }
     private void Update()
     {
-        Scroll(); 
-        ReturnObject();
+        if (isScroll)
+        {
+            Scroll();
+            ReturnObject();
+        }
     }
     public void SetMain()
     {
@@ -70,5 +59,10 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     public void SetScrollSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+
+    public void SetEnableScroll(bool isEnable)
+    {
+        isScroll = isEnable;
     }
 }

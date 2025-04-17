@@ -5,41 +5,36 @@ using UnityEngine;
 public class Stage : MonoBehaviour, IScroll
 {
     [SerializeField] private float scrollSpeed = 0.0f;
-
-    private ScrollManager scrollManager;
+    private bool isScroll = false;
 
     private void Update()
     {
         Scroll();
     }
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(GetScrollManager());
-    }
-    private IEnumerator GetScrollManager()
-    {
-        while (scrollManager == null)
-        {
-            scrollManager = FindObjectOfType<ScrollManager>();
-            yield return null;
-        }
-
-        scrollManager.AddScrollObject(this);
+        SetScrollSpeed(20.0f);
+        SetEnableScroll(true);
     }
     private void OnDisable()
     {
-        if (scrollManager != null)
-        {
-            scrollManager.RemoveScrollObject(this);
-        }
+        SetEnableScroll(false);
     }
     public void Scroll()
     {
-        transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
+        if (isScroll)
+        {
+            transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
+        }
     }
 
     public void SetScrollSpeed(float newSpeed)
     {
         scrollSpeed = newSpeed;
+    }
+
+    public void SetEnableScroll(bool isEnable)
+    {
+        isScroll = isEnable;
     }
 }

@@ -13,16 +13,16 @@ public enum StageNumder
 
 public class StageManager : MonoBehaviour
 {
-    private Vector3 firstSpawnPos = new Vector3(0.0f, 0.0f, 50.0f);
-    private Vector3 secondSpawnPos = new Vector3(0.0f, 0.0f, 150.0f);
-    private float returnZ = -50.0f;
+    private Vector3 firstSpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 secondSpawnPos = new Vector3(0.0f, 0.0f, 200.0f);
+    private float returnZ = -200.0f;
     private int count;
     private int stageCount;
     private GameObject[] obj;
 
     private void Awake()
     {
-        obj = new GameObject[6];
+        obj = new GameObject[3];
     }
 
     public void InitStage()
