@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollMap : MonoBehaviour, IScroll
+public class Stage : MonoBehaviour, IScroll
 {
     [SerializeField] private float scrollSpeed = 0.0f;
-    private float resetZ = 20.0f;
-    private Vector3 resetPosition = new Vector3(0.0f, 0.0f, 20.0f);
 
     private ScrollManager scrollManager;
 

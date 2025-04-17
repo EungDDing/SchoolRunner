@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         isGameStart = false;
         isInit = true;
-        transform.position = new Vector3(0.0f, 2.0f, -20.0f);
+        transform.position = new Vector3(0.0f, 2.0f, 0.0f);
     }
     private void OnCollisionEnter(Collision collision)
     {

@@ -6,6 +6,7 @@ public class CameraSetting : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform eventTargetPos;
+    [SerializeField] private AnimationCurve curve;
     private float duration = 2.0f;
 
     private Vector3 targetPos;
@@ -37,8 +38,8 @@ public class CameraSetting : MonoBehaviour
         {
             float t = elapsed / duration;
 
-            transform.position = Vector3.Lerp(startPos, endPos, t);
-            transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+            transform.position = Vector3.Lerp(startPos, endPos, curve.Evaluate(t));
+            transform.rotation = Quaternion.Lerp(startRot, endRot, curve.Evaluate(t));
 
             elapsed += Time.deltaTime;
             yield return null;

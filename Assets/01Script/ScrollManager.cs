@@ -40,6 +40,7 @@ public class ScrollManager : MonoBehaviour
         {
             if (scroll != null)
             {
+                Debug.Log("ScrollSpeed : " + scrollSpeed);
                 scroll.Scroll();
             }
         }

@@ -4,19 +4,22 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour, IScroll
 {
+    private Camera mainCamera;
     [SerializeField] private float speed = 0.0f;
     private ScoreManager scoreManager;
-
+    private ObjectType type;
     private ScrollManager scrollManager;
 
     public ScoreManager ScoreManager
     {
         get => scoreManager;
     }
-    private void Start()
+    public virtual void Start()
     {
         GameObject obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
+
+        mainCamera = Camera.main;
 
         StartCoroutine(GetScrollManager());
     }
@@ -39,11 +42,23 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     }
     private void Update()
     {
-        Scroll();
+        Scroll(); 
+        ReturnObject();
     }
     public void SetMain()
     {
         Debug.Log(gameObject.name);
+    }
+    public void ReturnObject()
+    {
+        if (Vector3.Distance(mainCamera.transform.position, transform.position) < 5.0f)
+        {
+            SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)type);
+        }
+    }
+    public void SetType(ObjectType newType)
+    {
+        type = newType;
     }
     public abstract void ItemGet();
     // interface
