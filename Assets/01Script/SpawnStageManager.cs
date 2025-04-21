@@ -61,7 +61,6 @@ public class SpawnStageManager : MonoBehaviour
     }
     public void ReturnStageToPool(Stage returnObject, int index)
     {
-        Debug.Log("호출");
         returnObject.gameObject.SetActive(false);
         stagePoolQueue[index].Enqueue(returnObject);
     }

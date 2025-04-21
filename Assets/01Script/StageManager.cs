@@ -32,8 +32,10 @@ public class StageManager : MonoBehaviour
         stageIndex = 0;
 
         obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, firstSpawnPos);
+        obj[stageSpawnCount].InitStage();
         stageSpawnCount = 1;
         obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
+        obj[stageSpawnCount].InitStage();
         stageSpawnCount = 2;
     }
 
