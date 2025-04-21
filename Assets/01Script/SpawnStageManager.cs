@@ -9,10 +9,11 @@ public class SpawnStageManager : MonoBehaviour
     public static SpawnStageManager instance;
 
     [SerializeField] private GameObject[] stagePrefabs;
-    private Queue<GameObject>[] stagePoolQueue;
+    private Queue<Stage>[] stagePoolQueue;
 
     private int poolSize = 2;
     private GameObject obj;
+    private Stage stage;
 
     private void Awake()
     {
@@ -28,11 +29,11 @@ public class SpawnStageManager : MonoBehaviour
     }
     private void Start()
     {
-        stagePoolQueue = new Queue<GameObject>[stagePrefabs.Length];
+        stagePoolQueue = new Queue<Stage>[stagePrefabs.Length];
 
         for (int i = 0; i < stagePrefabs.Length; i++)
         {
-            stagePoolQueue[i] = new Queue<GameObject>();
+            stagePoolQueue[i] = new Queue<Stage>();
             Allocate(i);
         }
     }
@@ -41,11 +42,14 @@ public class SpawnStageManager : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             obj = Instantiate(stagePrefabs[index]);
-            stagePoolQueue[index].Enqueue(obj);
+            if (obj.TryGetComponent<Stage>(out stage))
+            {
+                stagePoolQueue[index].Enqueue(stage);
+            }
             obj.SetActive(false);
         }
     }
-    private GameObject GetStageFromPool(int index)
+    private Stage GetStageFromPool(int index)
     {
         if (stagePoolQueue[index].Count < 1)
         {
@@ -55,21 +59,21 @@ public class SpawnStageManager : MonoBehaviour
         }
         return stagePoolQueue[index].Dequeue();
     }
-    public void ReturnStageToPool(GameObject returnObject, int index)
+    public void ReturnStageToPool(Stage returnObject, int index)
     {
         Debug.Log("호출");
         returnObject.gameObject.SetActive(false);
         stagePoolQueue[index].Enqueue(returnObject);
     }
-    public GameObject SpawnStage(int index, Vector3 spawnPos)
+    public Stage SpawnStage(int index, Vector3 spawnPos)
     {
-        obj = GetStageFromPool(index);
+        stage = GetStageFromPool(index);
 
-        if (obj != null)
+        if (stage != null)
         {
-            obj.transform.position = spawnPos;
-            obj.gameObject.SetActive(true);
+            stage.transform.position = spawnPos;
+            stage.gameObject.SetActive(true);
         }
-        return obj;
+        return stage;
     }
 }

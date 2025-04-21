@@ -1,40 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Stage : MonoBehaviour, IScroll
 {
     [SerializeField] private float scrollSpeed = 0.0f;
-    private bool isScroll = false;
+
+    private ScrollManager scrollManager;
 
     private void Update()
     {
         Scroll();
     }
-    private void OnEnable()
+    
+    public void InitStage()
+
     {
-        SetScrollSpeed(20.0f);
-        SetEnableScroll(true);
+        StartCoroutine(GetScrollManager());
     }
-    private void OnDisable()
+    private IEnumerator GetScrollManager()
     {
-        SetEnableScroll(false);
-    }
-    public void Scroll()
-    {
-        if (isScroll)
+        while (scrollManager == null)
         {
-            transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
+            scrollManager = FindObjectOfType<ScrollManager>();
+            yield return null;
         }
+
+        scrollManager.AddScrollObject(this);
     }
 
+    public void Scroll()
+    {
+        transform.position += -transform.forward * (scrollSpeed * Time.deltaTime);
+    }
+    public void StartMapControl()
+    {
+        StartCoroutine(MoveStartMap());
+    }
+    private IEnumerator MoveStartMap()
+    {
+        yield return new WaitForSeconds(3.0f);
+        scrollSpeed = 20.0f;
+    }
     public void SetScrollSpeed(float newSpeed)
     {
         scrollSpeed = newSpeed;
-    }
-
-    public void SetEnableScroll(bool isEnable)
-    {
-        isScroll = isEnable;
     }
 }

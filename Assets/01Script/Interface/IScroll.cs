@@ -8,5 +8,5 @@ public interface IScroll
     // scroll item
     public void Scroll();
     public void SetScrollSpeed(float newSpeed);
-    public void SetEnableScroll(bool isEnable);
+    // destory item
 }

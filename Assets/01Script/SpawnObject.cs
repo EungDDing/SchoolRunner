@@ -23,8 +23,9 @@ public class SpawnObject : MonoBehaviour
 
     private ObjectPosition objectPos;
 
+    private bool isInit = false;
     private Vector3 obstacleOffset01 = new Vector3(0.0f, 1.85f, 0.0f);
-    private void Start()
+    public void Awake()
     {
         if (transform.parent.name == "GroundSpawnPos")
         {
@@ -33,7 +34,15 @@ public class SpawnObject : MonoBehaviour
         else if (transform.parent.name == "AirSpawnPos")
         {
             objectPos = ObjectPosition.Air;
-        }
+        }   
+    }
+    private void OnEnable()
+    {
+        if (!isInit)
+        {
+            isInit = true;
+            return;
+        }    
         SpawnRandomObject();
     }
     public void SpawnRandomObject()
@@ -65,19 +74,19 @@ public class SpawnObject : MonoBehaviour
         }
         else if (objectPos == ObjectPosition.Air)
         {
-            if (spawnRate < 150)
+            if (spawnRate < 50)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.DumbbellCoin, transform.position);
             }
-            else if (spawnRate < 300)
+            else if (spawnRate < 100)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookCoin, transform.position);
             }
-            else if (spawnRate < 450)
+            else if (spawnRate < 150)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.MicCoin, transform.position);
             }
-            else if (spawnRate < 600)
+            else if (spawnRate < 200)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
             }

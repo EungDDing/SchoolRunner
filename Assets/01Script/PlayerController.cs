@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
-    private float forwardSpeed = 15.0f;
+    private float forwardSpeed = 20.0f;
     private Rigidbody rig;
     private Vector3 targetPosition;
     private float[] lanes = { -3.5f, 0, 3.5f };
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator SetInit()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         isGameStart = false;
         isInit = true;
         transform.position = new Vector3(0.0f, 2.0f, 0.0f);

@@ -13,27 +13,28 @@ public enum StageNumder
 
 public class StageManager : MonoBehaviour
 {
+
     private Vector3 firstSpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 secondSpawnPos = new Vector3(0.0f, 0.0f, 200.0f);
     private float returnZ = -200.0f;
-    private int count;
-    private int stageCount;
-    private GameObject[] obj;
+    private int stageIndex;
+    private int stageSpawnCount;
+    private Stage[] obj;
 
     private void Awake()
     {
-        obj = new GameObject[3];
+        obj = new Stage[3];
     }
 
-    public void InitStage()
+    public void InitStageManager()
     {
-        stageCount = 0;
-        count = 0;
+        stageSpawnCount = 0;
+        stageIndex = 0;
 
-        obj[stageCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, firstSpawnPos);
-        stageCount = 1;
-        obj[stageCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
-        stageCount = 2;
+        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, firstSpawnPos);
+        stageSpawnCount = 1;
+        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
+        stageSpawnCount = 2;
     }
 
     private void Update()
@@ -42,15 +43,14 @@ public class StageManager : MonoBehaviour
     }
     public void SpawnStage()
     {
-        if (obj[count] != null && obj[count].transform.position.z < returnZ)
+        if (obj[stageIndex] != null && obj[stageIndex].transform.position.z < returnZ)
         {
-            SpawnStageManager.instance.ReturnStageToPool(obj[count], (int)StageNumder.Stage01);
-            obj[stageCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
-            stageCount++;
-            count++;
-            Debug.Log("stageCount" + stageCount);
-            Debug.Log("Count" + count);
+            SpawnStageManager.instance.ReturnStageToPool(obj[stageIndex], (int)StageNumder.Stage01);
+            obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
+            stageSpawnCount++;
+            stageIndex++;
+            Debug.Log("stageCount" + stageSpawnCount);
+            Debug.Log("Count" + stageIndex);
         }
     }
-
 }

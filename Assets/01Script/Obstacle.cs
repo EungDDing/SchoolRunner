@@ -4,34 +4,46 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IScroll
 {
-    [SerializeField] private float scrollSpeed = 0.0f;
+    [SerializeField] private float scrollSpeed;
     [SerializeField] private float flyForce;
 
+    private ScrollManager scrollManager;
     private PlayerController playerController;
     private Vector3 flyDir = new Vector3(-1.0f, 1.0f, 0.0f);
     private Rigidbody rig;
 
     private int damage = 1;
-    private bool isScroll = false;
     private void Start()
     {
         GameObject obj = GameObject.FindGameObjectWithTag("Player");
         obj.TryGetComponent<PlayerController>(out playerController);
 
         gameObject.TryGetComponent<Rigidbody>(out rig);
+        scrollSpeed = 0.0f;
         flyForce = 7.0f;
+
+        StartCoroutine(GetScrollManager());
     }
-    private void OnEnable()
+    private IEnumerator GetScrollManager()
     {
-        SetEnableScroll(true);
-        SetScrollSpeed(20.0f);
+        while (scrollManager == null)
+        {
+            scrollManager = FindObjectOfType<ScrollManager>();
+            yield return null;
+        }
+
+        scrollManager.AddScrollObject(this);
+    }
+    private void OnDisable()
+    {
+        if (scrollManager != null)
+        {
+            scrollManager.RemoveScrollObject(this);
+        }
     }
     private void Update()
     {
-        if (isScroll)
-        {
-            Scroll();
-        }
+        Scroll();
     }
     // interface
     public void Scroll()
@@ -50,10 +62,5 @@ public class Obstacle : MonoBehaviour, IScroll
     public void SetScrollSpeed(float newSpeed)
     {
         scrollSpeed = newSpeed;
-    }
-
-    public void SetEnableScroll(bool isEnable)
-    {
-        isScroll = isEnable;
     }
 }
