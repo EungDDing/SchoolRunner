@@ -9,6 +9,7 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     private ScoreManager scoreManager;
     private ObjectType type;
     private ScrollManager scrollManager;
+    private float returnZ = -200.0f;
 
     public ScoreManager ScoreManager
     {
@@ -33,6 +34,13 @@ public abstract class ItemBase : MonoBehaviour, IScroll
 
         scrollManager.AddScrollObject(this);
     }
+    private void OnEnable()
+    {
+        if (scrollManager != null)
+        {
+            scrollManager.AddScrollObject(this);
+        }
+    }
     private void OnDisable()
     {
         if (scrollManager != null)
@@ -43,7 +51,10 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     private void Update()
     {
         Scroll(); 
-        ReturnObject();
+        if (transform.position.z < returnZ)
+        {
+            ReturnObject();
+        }
     }
     public void SetMain()
     {
@@ -51,10 +62,8 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     }
     public void ReturnObject()
     {
-        if (Vector3.Distance(mainCamera.transform.position, transform.position) < 5.0f)
-        {
-            SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)type);
-        }
+        Debug.Log("반환 타입" + type);
+        SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)type);
     }
     public void SetType(ObjectType newType)
     {

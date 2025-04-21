@@ -12,7 +12,5 @@ public class ItemBook : ItemBase
     public override void ItemGet()
     {
         ScoreManager.Book++;
-
-        Destroy(gameObject);
     }
 }

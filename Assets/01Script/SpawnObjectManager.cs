@@ -59,6 +59,7 @@ public class SpawnObjectManager : MonoBehaviour
     {
         returnObject.gameObject.SetActive(false);
         objectPoolQueue[index].Enqueue(returnObject);
+        Debug.Log("호출됨" + index);
     }
     
     public void SpawnObject(int index, Vector3 spawnPos)

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ItemMic : ItemBase
 {
+    public override void Start()
+    {
+        base.Start();
+        SetType(ObjectType.MicCoin);
+    }
     public override void ItemGet()
     {
         ScoreManager.Mic++;
-
-        Destroy(gameObject);
     }
 }

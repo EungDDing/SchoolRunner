@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScrollManager : MonoBehaviour
 {
     private List<IScroll> scrollObjects;
-    [SerializeField] private float scrollSpeed = 0.0f;
+    [SerializeField] private float scrollSpeed = 20.0f;
 
     private void Awake() 
     {
@@ -26,6 +26,10 @@ public class ScrollManager : MonoBehaviour
             scrollObjects.Add(scrollObject);
             scrollObject.SetScrollSpeed(scrollSpeed);
         }
+        else
+        {
+            scrollObject.SetScrollSpeed(scrollSpeed);
+        }
     }
     public void RemoveScrollObject(IScroll scrollObject)
     {
@@ -40,7 +44,6 @@ public class ScrollManager : MonoBehaviour
         {
             if (scroll != null)
             {
-                Debug.Log("ScrollSpeed : " + scrollSpeed);
                 scroll.Scroll();
             }
         }

@@ -23,7 +23,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        obj = new Stage[3];
+        obj = new Stage[8];
     }
 
     public void InitStageManager()
