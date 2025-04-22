@@ -55,19 +55,19 @@ public class SpawnObject : MonoBehaviour
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Obstacle01, transform.position + obstacleOffset01);
             }
-            else if (spawnRate < 400)
+            else if (spawnRate < 300)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.DumbbellCoin, transform.position);
             }
-            else if (spawnRate < 550)
+            else if (spawnRate < 350)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookCoin, transform.position);
             }
-            else if (spawnRate < 700)
+            else if (spawnRate < 400)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.MicCoin, transform.position);
             }
-            else if (spawnRate < 850)
+            else if (spawnRate < 450)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
             }

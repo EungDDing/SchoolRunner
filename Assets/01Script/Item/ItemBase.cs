@@ -62,7 +62,6 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     }
     public void ReturnObject()
     {
-        Debug.Log("반환 타입" + type);
         SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)type);
     }
     public void SetType(ObjectType newType)

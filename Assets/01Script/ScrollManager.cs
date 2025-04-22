@@ -47,6 +47,7 @@ public class ScrollManager : MonoBehaviour
                 scroll.Scroll();
             }
         }
+        Debug.Log(Time.time);
     }
     public void InitScrollManager(float newSpeed)
     {

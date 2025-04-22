@@ -51,8 +51,8 @@ public class StageManager : MonoBehaviour
             obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
             stageSpawnCount++;
             stageIndex++;
-            Debug.Log("stageCount" + stageSpawnCount);
-            Debug.Log("Count" + stageIndex);
+            Debug.Log("@@@@@@@@stageCount" + stageSpawnCount + "@@@@@@@@@@@@@@");
+            Debug.Log("@@@@@@@@Count" + stageIndex + "@@@@@@@@@@@@@@@@@");
         }
     }
 }

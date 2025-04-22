@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         scrollManager.InitScrollManager(20.0f);
         scoreManager.InitData();
-        
-    }
 
+    }
 }
