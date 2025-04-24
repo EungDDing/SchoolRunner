@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.IO;
+using UnityEngine.SceneManagement;
 
+public enum SceneName
+{ 
+    IntroScene,
+    RunningScene
+}
+
+[System.Serializable]
+public class PlayerData
+{
+    public string playerID;
+
+}
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private PlayerController playerController;
-    private ScoreManager scoreManager;
-    private ScrollManager scrollManager;
-    private StageManager stageManager;
     private void Awake()
     {
         if (instance == null)
@@ -23,28 +32,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
+    
+    #region _SceneManager_
+    private SceneName nextSceneName;
+    public SceneName NextScene => nextSceneName;
+    public void AsyncLoadNextScene(SceneName nextScene)
     {
-        LoadSceneInit();
+        nextSceneName = nextScene;
+        SceneManager.LoadScene(SceneName.RunningScene.ToString());
     }
-    public void LoadSceneInit()
-    {
-        playerController = FindAnyObjectByType<PlayerController>();
-        scoreManager = FindAnyObjectByType<ScoreManager>();
-        scrollManager = FindAnyObjectByType<ScrollManager>();
-        stageManager = FindAnyObjectByType<StageManager>();
-    }
-    public void StartGame()
-    {
-        StartCoroutine(GameStart());
-    }
-    IEnumerator GameStart()
-    {
-        playerController.InitPlayer();
-        stageManager.InitStageManager();
-        yield return new WaitForSeconds(3.0f);
-        scrollManager.InitScrollManager(20.0f);
-        scoreManager.InitData();
-
-    }
+    #endregion
 }
