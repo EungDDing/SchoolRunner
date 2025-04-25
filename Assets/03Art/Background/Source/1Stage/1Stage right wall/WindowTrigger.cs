@@ -4,6 +4,7 @@ public class WindowTrigger : MonoBehaviour
 {
     public Animator window1;
     public Animator window2;
+    public Animator window3;
 
     private bool triggered = false;
 
@@ -23,7 +24,10 @@ public class WindowTrigger : MonoBehaviour
         {
             window2.SetTrigger("Open");
         }
-
-        Debug.Log("창문 랜덤 열림 처리 완료!");
+        if (Random.value > 0.5f)
+        {
+            window3.SetTrigger("Open");
+        }
+            Debug.Log("창문 랜덤 열림 처리 완료!");
     }
 }
