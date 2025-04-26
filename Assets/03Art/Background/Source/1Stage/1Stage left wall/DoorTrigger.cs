@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnimator.SetTrigger("Open");
+            doorAnimator.SetTrigger("open");
         }
     }
 
@@ -16,7 +16,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnimator.SetTrigger("Close");
+            doorAnimator.SetTrigger("close");
         }
     }
 }

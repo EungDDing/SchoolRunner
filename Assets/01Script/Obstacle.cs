@@ -52,7 +52,7 @@ public class Obstacle : MonoBehaviour, IScroll
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("HitBox"))
         {
             playerController.TakeDamage(damage);
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);

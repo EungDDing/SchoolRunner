@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Item
   - Obstacle
+  - HitBox
   layers:
   - Default
   - TransparentFX

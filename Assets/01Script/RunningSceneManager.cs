@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class RunningSceneManager : MonoBehaviour
         playerController.InitPlayer();
         stageManager.InitStageManager();
         yield return new WaitForSeconds(3.0f);
-        scrollManager.InitScrollManager(20.0f);
+        scrollManager.InitScrollManager(16.0f);
         scoreManager.InitData();
 
     }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class WindowTrigger : MonoBehaviour
 {
@@ -10,24 +10,24 @@ public class WindowTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (triggered) return; // Áßº¹ ¹æÁö
+        if (triggered) return; // ì¤‘ë³µ ë°©ì§€
         if (!other.CompareTag("Player")) return;
 
         triggered = true;
 
-        // Ã¢¹®¸¶´Ù ·£´ıÀ¸·Î ¿­¸±Áö °áÁ¤
+        // ì°½ë¬¸ë§ˆë‹¤ ëœë¤ìœ¼ë¡œ ì—´ë¦´ì§€ ê²°ì •
         if (Random.value > 0.5f)
         {
-            window1.SetTrigger("Open");
+            window1.SetTrigger("open");
         }
         if (Random.value > 0.5f)
         {
-            window2.SetTrigger("Open");
+            window2.SetTrigger("open");
         }
         if (Random.value > 0.5f)
         {
-            window3.SetTrigger("Open");
+            window3.SetTrigger("open");
         }
-            Debug.Log("Ã¢¹® ·£´ı ¿­¸² Ã³¸® ¿Ï·á!");
+            Debug.Log("ì°½ë¬¸ ëœë¤ ì—´ë¦¼ ì²˜ë¦¬ ì™„ë£Œ!");
     }
 }

@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+
+    private Animator animator; 
     private float forwardSpeed = 20.0f;
     private Rigidbody rig;
     private Vector3 targetPosition;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         TryGetComponent<Rigidbody>(out rig);
+        TryGetComponent<Animator>(out animator);
         CurrentHP = maxHP;
         moveSpeed = 12.0f;
         jumpForce = 25.0f;
@@ -131,6 +134,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (!isJump)
                 {
+                    // animation test
+                    animator.SetTrigger("Jump");
+
                     rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     isJump = true;
                 }
@@ -160,6 +166,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            animator.SetTrigger("Land");
             isJump = false;
             isMoveOnce = false;
         }

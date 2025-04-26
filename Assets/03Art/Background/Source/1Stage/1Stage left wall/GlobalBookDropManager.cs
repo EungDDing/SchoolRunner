@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class GlobalBookDropManager : MonoBehaviour
@@ -13,7 +13,7 @@ public class GlobalBookDropManager : MonoBehaviour
 
         if (bookList.Count == 0) return;
 
-        // ·£´ı 1~2°³ ¼±ÅÃ
+        // ëœë¤ 1~2ê°œ ì„ íƒ
         int dropCount = Random.Range(dropCountMin, dropCountMax + 1);
         ShuffleList(bookList);
 
