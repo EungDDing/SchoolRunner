@@ -6549,6 +6549,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112788511}
   m_CullTransparentMesh: 1
+--- !u!4 &387472741415551311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664615088331236288}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.055533, y: 28.533476, z: -70.42638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412543597022834909
 GameObject:
   m_ObjectHideFlags: 0
@@ -6609,6 +6624,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &664615088331236288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387472741415551311}
+  - component: {fileID: 993735355825310694}
+  m_Layer: 0
+  m_Name: BookDropManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &733060457945500648
 Transform:
   m_ObjectHideFlags: 0
@@ -6624,6 +6656,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8750970911676997561}
   m_LocalEulerAnglesHint: {x: -89, y: -145.814, z: -125.859}
+--- !u!114 &993735355825310694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664615088331236288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cba05a7c4a94c4e8acaea8c7b2a7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropCountMin: 1
+  dropCountMax: 2
 --- !u!4 &1612577508049634520
 Transform:
   m_ObjectHideFlags: 0
@@ -6858,3 +6904,4 @@ SceneRoots:
   - {fileID: 1430134733}
   - {fileID: 941488373}
   - {fileID: 829388671}
+  - {fileID: 387472741415551311}
