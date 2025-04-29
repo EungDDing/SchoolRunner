@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (isGameStart)
         {
             transform.position += Vector3.forward * (forwardSpeed * Time.deltaTime);
+            animator.SetBool("Start", true);
         }
         if (isInit)
         {
