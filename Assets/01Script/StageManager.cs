@@ -16,7 +16,8 @@ public class StageManager : MonoBehaviour
 
     private Vector3 firstSpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 secondSpawnPos = new Vector3(0.0f, 0.0f, 200.0f);
-    private float returnZ = -200.0f;
+    private Vector3 loopSpawnPos = new Vector3(0.0f, 0.0f, 190.0f);
+    private float returnZ = -210.0f;
     private int stageIndex;
     private int stageSpawnCount;
     private Stage[] obj;
@@ -48,7 +49,7 @@ public class StageManager : MonoBehaviour
         if (obj[stageIndex] != null && obj[stageIndex].transform.position.z < returnZ)
         {
             SpawnStageManager.instance.ReturnStageToPool(obj[stageIndex], (int)StageNumder.Stage01);
-            obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
+            obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, loopSpawnPos);
             stageSpawnCount++;
             stageIndex++;
             Debug.Log("@@@@@@@@stageCount" + stageSpawnCount + "@@@@@@@@@@@@@@");
