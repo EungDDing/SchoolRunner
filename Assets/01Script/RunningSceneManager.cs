@@ -28,7 +28,7 @@ public class RunningSceneManager : MonoBehaviour
         playerController.InitPlayer();
         stageManager.InitStageManager();
         yield return new WaitForSeconds(3.0f);
-        scrollManager.InitScrollManager(16.0f);
+        scrollManager.InitScrollManager(15.0f);
         scoreManager.InitData();
 
     }
