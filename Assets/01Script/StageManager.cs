@@ -1,15 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using Unity.VisualScripting;
 using UnityEngine;
-
-public enum StageNumder
-{ 
-    Stage01 = 0,
-    Stage02,
-    Stage03,
-    Stage04,
-}
 
 public class StageManager : MonoBehaviour
 {
@@ -24,7 +17,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        obj = new Stage[8];
+        obj = new Stage[20];
     }
 
     public void InitStageManager()
@@ -32,10 +25,10 @@ public class StageManager : MonoBehaviour
         stageSpawnCount = 0;
         stageIndex = 0;
 
-        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, firstSpawnPos);
+        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumber.Stage01, firstSpawnPos);
         obj[stageSpawnCount].InitStage();
         stageSpawnCount = 1;
-        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, secondSpawnPos);
+        obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumber.Stage01, secondSpawnPos);
         obj[stageSpawnCount].InitStage();
         stageSpawnCount = 2;
     }
@@ -48,12 +41,36 @@ public class StageManager : MonoBehaviour
     {
         if (obj[stageIndex] != null && obj[stageIndex].transform.position.z < returnZ)
         {
-            SpawnStageManager.instance.ReturnStageToPool(obj[stageIndex], (int)StageNumder.Stage01);
-            obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)StageNumder.Stage01, loopSpawnPos);
+            StageNumber returnNumber = GetStageCount(stageIndex);
+            SpawnStageManager.instance.ReturnStageToPool(obj[stageIndex], (int)returnNumber);
+
+            StageNumber spawnNumber = GetStageCount(stageSpawnCount);
+            obj[stageSpawnCount] = SpawnStageManager.instance.SpawnStage((int)spawnNumber, loopSpawnPos);
+            obj[stageSpawnCount].InitStage();
+
             stageSpawnCount++;
             stageIndex++;
+
+            if (stageSpawnCount == 20)
+            {
+                return;
+            }
             Debug.Log("@@@@@@@@stageCount" + stageSpawnCount + "@@@@@@@@@@@@@@");
             Debug.Log("@@@@@@@@Count" + stageIndex + "@@@@@@@@@@@@@@@@@");
+        }
+    }
+    private StageNumber GetStageCount(int count)
+    {
+        int index = count / 5;
+        int stageCount = count % 5;
+
+        if (stageCount < 4)
+        {
+            return (StageNumber)index;
+        }
+        else
+        {
+            return StageNumber.Bridge;
         }
     }
 }

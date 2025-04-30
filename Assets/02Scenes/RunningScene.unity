@@ -631,6 +631,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stagePrefabs:
   - {fileID: 9077753678196679786, guid: 6880bdd63b7efea41b0aae8461d05756, type: 3}
+  - {fileID: 6103212920371452443, guid: 68b1499f03dbcdd4396fa4232f78ea6c, type: 3}
+  - {fileID: 9059521280954683637, guid: 8ec3f60d35be853439d8550eee7a5d83, type: 3}
+  - {fileID: 7744595192610973253, guid: 8b5a0ee842357594895bdc2b97f22328, type: 3}
+  - {fileID: 4746558172760698469, guid: 150fb1af0a2354548b80d5299cc8e43e, type: 3}
 --- !u!4 &248672408
 Transform:
   m_ObjectHideFlags: 0
