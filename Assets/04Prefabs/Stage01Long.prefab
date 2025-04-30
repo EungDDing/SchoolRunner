@@ -55,6 +55,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4141120721905204642}
     m_Modifications:
+    - target: {fileID: 764929435642398292, guid: 904b06dbe8b69794face3c202d0677f5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2407097143158498802, guid: 904b06dbe8b69794face3c202d0677f5, type: 3}
       propertyPath: m_Name
       value: Second
@@ -126,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4141120721905204642}
     m_Modifications:
+    - target: {fileID: 764929435642398292, guid: 904b06dbe8b69794face3c202d0677f5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1529868141978076311, guid: 904b06dbe8b69794face3c202d0677f5, type: 3}
       propertyPath: m_TagString
       value: Ground
