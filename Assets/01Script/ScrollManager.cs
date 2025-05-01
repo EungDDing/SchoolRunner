@@ -40,7 +40,7 @@ public class ScrollManager : MonoBehaviour
     }
     private void Update()
     {
-        foreach (var scroll in scrollObjects)
+        foreach (var scroll in new List<IScroll>(scrollObjects))
         {
             if (scroll != null)
             {

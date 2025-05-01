@@ -56,23 +56,39 @@ public class SpawnObject : MonoBehaviour
         
         if (objectPos == ObjectPosition.Ground)
         {
-            if (spawnRate < 250)
+            if (spawnRate < 50)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.TrashCan, transform.position + obstacleOffset01);
             }
-            else if (spawnRate < 300)
+            else if (spawnRate < 100)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Desk, transform.position);
+            }
+            else if (spawnRate < 150)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Chair, transform.position);
+            }
+            else if (spawnRate < 200)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.VaultingBox, transform.position);
+            }
+            else if (spawnRate < 230)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookShelf, transform.position);
+            }
+            else if (spawnRate < 280)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.DumbbellCoin, transform.position);
             }
-            else if (spawnRate < 350)
+            else if (spawnRate < 330)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookCoin, transform.position);
             }
-            else if (spawnRate < 400)
+            else if (spawnRate < 380)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.MicCoin, transform.position);
             }
-            else if (spawnRate < 450)
+            else if (spawnRate < 430)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
             }

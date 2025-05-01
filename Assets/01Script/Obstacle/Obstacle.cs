@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour, IScroll
+public abstract class Obstacle : MonoBehaviour, IScroll
 {
     [SerializeField] private float scrollSpeed;
     [SerializeField] private float flyForce;
@@ -11,8 +11,16 @@ public class Obstacle : MonoBehaviour, IScroll
     private PlayerController playerController;
     private Vector3 flyDir = new Vector3(-1.0f, 1.0f, 0.0f);
     private Rigidbody rig;
+    private float returnZ = -200.0f;
 
     private int damage = 1;
+    private ObjectType obstacleType;
+
+    public ObjectType ObstacleType
+    {
+        get => obstacleType;
+        set => obstacleType = value;
+    }
     private void Start()
     {
         GameObject obj = GameObject.FindGameObjectWithTag("Player");
@@ -23,6 +31,8 @@ public class Obstacle : MonoBehaviour, IScroll
         flyForce = 7.0f;
 
         StartCoroutine(GetScrollManager());
+        SetObstacleType();
+        Debug.Log(obstacleType);
     }
     private IEnumerator GetScrollManager()
     {
@@ -49,6 +59,10 @@ public class Obstacle : MonoBehaviour, IScroll
     public void Scroll()
     {
         transform.position += Vector3.back * (scrollSpeed * Time.deltaTime);
+        if (transform.position.z < returnZ)
+        {
+            ReturnObject();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -56,15 +70,21 @@ public class Obstacle : MonoBehaviour, IScroll
         {
             playerController.TakeDamage(damage);
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
+            StartCoroutine(ReturnObstacle());
         }
     }
-    private IEnumerator ReturnObstacle()
+    public IEnumerator ReturnObstacle()
     {
         yield return new WaitForSeconds(1.0f);
-        // return to pool
+        ReturnObject();
     }
     public void SetScrollSpeed(float newSpeed)
     {
         scrollSpeed = newSpeed;
     }
+    public void ReturnObject()
+    {
+        SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)obstacleType);
+    }
+    public abstract void SetObstacleType();
 }
