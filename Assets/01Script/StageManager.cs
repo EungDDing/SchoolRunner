@@ -15,13 +15,18 @@ public class StageManager : MonoBehaviour
     private int stageSpawnCount;
     private Stage[] obj;
 
+    private bool isSpawn;
+
     private void Awake()
     {
+        isSpawn = true;
         obj = new Stage[20];
     }
 
     public void InitStageManager()
     {
+        isSpawn = true;
+
         stageSpawnCount = 0;
         stageIndex = 0;
 
@@ -39,7 +44,7 @@ public class StageManager : MonoBehaviour
     }
     public void SpawnStage()
     {
-        if (obj[stageIndex] != null && obj[stageIndex].transform.position.z < returnZ)
+        if (obj[stageIndex] != null && obj[stageIndex].transform.position.z < returnZ && isSpawn)
         {
             StageNumber returnNumber = GetStageCount(stageIndex);
             SpawnStageManager.instance.ReturnStageToPool(obj[stageIndex], (int)returnNumber);
@@ -53,8 +58,10 @@ public class StageManager : MonoBehaviour
 
             if (stageSpawnCount == 20)
             {
-                return;
+                Debug.Log("멈춰!");
+                isSpawn = false;
             }
+
             Debug.Log("@@@@@@@@stageCount" + stageSpawnCount + "@@@@@@@@@@@@@@");
             Debug.Log("@@@@@@@@Count" + stageIndex + "@@@@@@@@@@@@@@@@@");
         }

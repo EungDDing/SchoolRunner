@@ -8,7 +8,12 @@ public enum ObjectType
     BookCoin,
     MicCoin,
     GameCoin,
-    Obstacle01,
+    TrashCan,
+    Desk,
+    Chair,
+    VaultingBox,
+    BookShelf,
+    Bench
 }
 
 public enum ObjectPosition
@@ -24,7 +29,7 @@ public class SpawnObject : MonoBehaviour
     private ObjectPosition objectPos;
 
     private bool isInit = false;
-    private Vector3 obstacleOffset01 = new Vector3(0.0f, 1.85f, 0.0f);
+    private Vector3 obstacleOffset01 = new Vector3(0.0f, 1.7f, 0.0f);
     public void Awake()
     {
         if (transform.parent.name == "GroundSpawnPos")
@@ -53,7 +58,7 @@ public class SpawnObject : MonoBehaviour
         {
             if (spawnRate < 250)
             {
-                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Obstacle01, transform.position + obstacleOffset01);
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.TrashCan, transform.position + obstacleOffset01);
             }
             else if (spawnRate < 300)
             {

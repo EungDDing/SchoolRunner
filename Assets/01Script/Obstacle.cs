@@ -58,7 +58,11 @@ public class Obstacle : MonoBehaviour, IScroll
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
         }
     }
-
+    private IEnumerator ReturnObstacle()
+    {
+        yield return new WaitForSeconds(1.0f);
+        // return to pool
+    }
     public void SetScrollSpeed(float newSpeed)
     {
         scrollSpeed = newSpeed;
