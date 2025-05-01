@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
 
+    private Renderer[] playerRenderers;
     private Animator animator; 
     private float forwardSpeed = 20.0f;
     private Rigidbody rig;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isDrag = false;
     private bool isJump = false;
     private bool isMoveOnce = false;
+    private bool isInvincible = false;
 
     private int currentHP;
     private int maxHP = 3;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         TryGetComponent<Rigidbody>(out rig);
         TryGetComponent<Animator>(out animator);
+        playerRenderers = GetComponentsInChildren<Renderer>();
         CurrentHP = maxHP;
         moveSpeed = 12.0f;
         jumpForce = 25.0f;
@@ -174,11 +177,44 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        CurrentHP -= damage;
-        if (CurrentHP <= 0)
+        if (!isInvincible)
         {
-            // game over
-            Debug.Log("게임 종료");
+            isInvincible = true;
+
+            StartCoroutine(PlayerDamaged());
+            CurrentHP -= damage;
+            if (CurrentHP <= 0)
+            {
+                // game over
+                Debug.Log("게임 종료");
+            }
+        }
+    }
+    private IEnumerator PlayerDamaged()
+    {
+        StartCoroutine(BlinkPlayer());
+        yield return new WaitForSeconds(2.0f);
+        isInvincible = false;
+        StopCoroutine(BlinkPlayer());
+        foreach (Renderer renderer in playerRenderers)
+        {
+            renderer.enabled = true;
+        }
+    }
+    private IEnumerator BlinkPlayer()
+    {
+        while (isInvincible)
+        {
+            foreach (Renderer renderer in playerRenderers)
+            {
+                renderer.enabled = false;
+            }
+            yield return new WaitForSeconds(0.1f);
+            foreach (Renderer renderer in playerRenderers)
+            {
+                renderer.enabled = true;
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
