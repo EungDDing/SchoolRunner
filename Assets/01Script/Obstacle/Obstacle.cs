@@ -44,6 +44,13 @@ public abstract class Obstacle : MonoBehaviour, IScroll
 
         scrollManager.AddScrollObject(this);
     }
+    private void OnEnable()
+    {
+        if (scrollManager != null)
+        {
+            scrollManager.AddScrollObject(this);
+        }
+    }
     private void OnDisable()
     {
         if (scrollManager != null)
@@ -54,15 +61,16 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     private void Update()
     {
         Scroll();
+        if (transform.position.z < returnZ)
+        {
+            ReturnObject();
+        }
     }
     // interface
     public void Scroll()
     {
         transform.position += Vector3.back * (scrollSpeed * Time.deltaTime);
-        if (transform.position.z < returnZ)
-        {
-            ReturnObject();
-        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -85,6 +93,7 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     public void ReturnObject()
     {
         SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)obstacleType);
+        Debug.Log(obstacleType);
     }
     public abstract void SetObstacleType();
 }
