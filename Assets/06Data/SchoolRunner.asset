@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5c12956e69b7459c3243bbd9fc80a, type: 3}
+  m_Name: SchoolRunner
+  m_EditorClassIdentifier: 
+  EndingData:
+  - EndingID: 0
+    Title: Streamer
+    Script: "\uC544\uC544, \uC5EC\uB7EC\uBD84\uB4E4 \uB4E4\uB9AC\uC2DC\uC8E0? \uC9C0\uAE08\uBD80\uD130
+      \uBC29\uC1A1 \uC2DC\uC791\uD558\uACA0\uC2B5\uB2C8\uB2E4!"
+    Image: Ending/Ending_Streamer
+  - EndingID: 1
+    Title: Doctor
+    Script: "\uB124, \uC218\uC220\uC740 \uC798 \uB418\uC5C8\uACE0 \uACBD\uACFC\uB9CC
+      \uC9C0\uCF1C\uBCF4\uBA74 \uB420 \uAC83 \uAC19\uB124\uC694."
+    Image: Ending/Ending_Doctor
+  - EndingID: 2
+    Title: Singer
+    Script: "\uCD5C\uC120\uC744 \uB2E4\uD574 \uC900\uBE44\uD55C \uBB34\uB300\uC785\uB2C8\uB2E4.
+      \uC624\uB798\uC624\uB798 \uAE30\uC5B5\uB418\uC5C8\uC73C\uBA74 \uC88B\uACA0\uB124\uC694."
+    Image: Ending/Ending_Singer
+  - EndingID: 3
+    Title: FootballPlayer
+    Script: "\uB300\uD55C\uBBFC\uAD6D\uC758 \uC790\uB791\uC2A4\uB7EC\uC6B4 \uACF5\uACA9\uC218,
+      \uADF8\uAC00 \uC218\uBE44\uC218\uB97C \uC81C\uCE58\uBA70 \uB2E8\uB3C5\uC73C\uB85C
+      \uB3CC\uD30C\uD569\uB2C8\uB2E4!"
+    Image: Ending/Ending_FootballPlayer
+  - EndingID: 4
+    Title: MusicalActor
+    Script: "\uB0B4 \uC601\uD63C\uC740 \uADF8\uB300\uC758 \uAC83. \uADF8\uB7EC\uB2C8
+      \uB0A0 \uC704\uD574 \uB2F9\uC2E0\uC758 \uC0B6\uC744 \uB358\uC9C0\uC9C0 \uB9D0\uC544\uC694."
+    Image: Ending/Ending_MusicalActor
+  - EndingID: 5
+    Title: Police
+    Script: "\uC7A0\uBCF5 \uD604\uC7A5 \uADFC\uCC98 \uBC94\uC8C4\uC790 \uBC1C\uACAC.
+      \uC9C4\uC785 \uD6C4 \uC81C\uC555 \uC2E4\uC2DC\uD558\uACA0\uC2B5\uB2C8\uB2E4."
+    Image: Ending/Ending_Police
+  - EndingID: 6
+    Title: Parttime
+    Script: "\uC54C\uBC14\uB3C4 \uC2AC\uC2AC \uADF8\uB9CC\uB450\uACE0 \uD560 \uC77C\uC744
+      \uCC3E\uC544\uC57C \uB418\uB294\uB370 \uBB58\uB85C \uBA39\uACE0 \uC0B4\uC9C0..?"
+    Image: Ending/Ending_Parttime
