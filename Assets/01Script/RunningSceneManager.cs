@@ -18,6 +18,7 @@ public class RunningSceneManager : MonoBehaviour
         scoreManager = FindAnyObjectByType<ScoreManager>();
         scrollManager = FindAnyObjectByType<ScrollManager>();
         stageManager = FindAnyObjectByType<StageManager>();
+        GameManager.instance.TryGetPlayerData();
     }
     public void StartGame()
     {
@@ -28,7 +29,7 @@ public class RunningSceneManager : MonoBehaviour
         playerController.InitPlayer();
         stageManager.InitStageManager();
         yield return new WaitForSeconds(3.0f);
-        scrollManager.InitScrollManager(15.0f);
+        scrollManager.InitScrollManager(20.0f);
         scoreManager.InitData();
 
     }

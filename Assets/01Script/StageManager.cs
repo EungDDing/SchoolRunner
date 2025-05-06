@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEngine;
+using static StageManager;
 
 public class StageManager : MonoBehaviour
 {
@@ -56,14 +57,11 @@ public class StageManager : MonoBehaviour
             stageSpawnCount++;
             stageIndex++;
 
+            // stop spawn stage
             if (stageSpawnCount == 20)
-            {
-                Debug.Log("멈춰!");
+            { 
                 isSpawn = false;
             }
-
-            Debug.Log("@@@@@@@@stageCount" + stageSpawnCount + "@@@@@@@@@@@@@@");
-            Debug.Log("@@@@@@@@Count" + stageIndex + "@@@@@@@@@@@@@@@@@");
         }
     }
     private StageNumber GetStageCount(int count)

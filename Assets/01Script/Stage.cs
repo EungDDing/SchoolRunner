@@ -19,6 +19,9 @@ public class Stage : MonoBehaviour, IScroll
     private ScrollManager scrollManager;
     private StageNumber stageNumber;
 
+    public delegate void ChangeStageCount();
+    public static event ChangeStageCount OnChangeStageCount;
+
     public StageNumber StageNumber
     {
         get => stageNumber;
@@ -85,6 +88,13 @@ public class Stage : MonoBehaviour, IScroll
         else if (name.Contains("Bridge"))
         {
             stageNumber = StageNumber.Bridge;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OnChangeStageCount?.Invoke();
         }
     }
 }

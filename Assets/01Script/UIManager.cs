@@ -29,11 +29,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button configButton;
     [SerializeField] private Button configCloseButton;
 
+    [SerializeField] private Image endIamge;
+
+    private bool isOpenAlbum;
     private PlayerController playerController;
     private ScoreManager scoreManager;
     private ItemManager itemManager;
+    private AlbumUI albumUI;
 
     private GameObject obj;
+    private GameObject albumPanel;
+
     private void Awake()
     {
         obj = GameObject.FindGameObjectWithTag("Player");
@@ -41,6 +47,15 @@ public class UIManager : MonoBehaviour
         obj.TryGetComponent<ItemManager>(out itemManager);
         obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
+        obj = GameObject.Find("StageManager");
+        if (albumPanel == null)
+        {
+            albumPanel = GameObject.Find("AlbumPanel");
+            if (albumPanel && albumPanel.TryGetComponent<AlbumUI>(out albumUI))
+            { 
+                isOpenAlbum = false;
+            }
+        }
     }
     private void Start()
     {
@@ -56,6 +71,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeMic += ChangeSingValue;
         scoreManager.OnChangeGame += ChangeGameValue;
         playerController.OnChangeHP += ChangeHeart;
+        scoreManager.OnGameEnd += FadeOutScreen;
     }
     private void OnDisable()
     {
@@ -64,6 +80,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeMic -= ChangeSingValue;
         scoreManager.OnChangeGame -= ChangeGameValue;
         playerController.OnChangeHP -= ChangeHeart;
+        scoreManager.OnGameEnd -= FadeOutScreen;
     }
     public void ChangeDumbbellValue(int value)
     {
@@ -113,5 +130,41 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         runCanvas.gameObject.SetActive(true);
+    }
+    public void ShowAlbum()
+    {
+        isOpenAlbum = !isOpenAlbum;
+        if (isOpenAlbum)
+        {
+            albumPanel.LeanScale(Vector3.one, 0.7f).setEase(LeanTweenType.easeInOutElastic);
+            albumUI.RefreshAlbum();
+        }
+        else
+        {
+            albumPanel.LeanScale(Vector3.zero, 0.7f).setEase(LeanTweenType.easeInOutElastic);
+        }
+    }
+    private void FadeOutScreen()
+    {
+        StartCoroutine(FadeOut());
+    }
+    private IEnumerator FadeOut()
+    {
+        float time = 0.0f;
+        float percent = 0.0f;
+        float fadeOutTime = 2.0f;
+
+        while (percent < 1.0f)
+        {
+            time += Time.deltaTime;
+            percent = time / fadeOutTime;
+
+            Color color = endIamge.color;
+            color.a = Mathf.Lerp(0, 1, percent);
+            endIamge.color = color;
+
+            yield return null;
+        }
+
     }
 }
