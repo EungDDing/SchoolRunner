@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4141120721905204642}
   - component: {fileID: 2055009055186105782}
+  - component: {fileID: 5364661734490229717}
   m_Layer: 0
   m_Name: Stage01Long
   m_TagString: Untagged
@@ -47,6 +48,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 0
+--- !u!65 &5364661734490229717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077753678196679786}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 20, z: 1}
+  m_Center: {x: 0, y: 10, z: 0}
 --- !u!1001 &7092781443415118784
 PrefabInstance:
   m_ObjectHideFlags: 0
