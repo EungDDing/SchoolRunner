@@ -31,11 +31,21 @@ public class AlbumUI : MonoBehaviour
     }
     public void RefreshAlbum()
     {
-        
         for (int i = 0; i < cardCount; i++)
         {
-            GameManager.instance.Data.endings[i].isUnlocked = true;
             cards[i].DrawEndingCard(i);
         }
+
+        StartCoroutine(SetScrollPosition());
+    }
+
+    private IEnumerator SetScrollPosition()
+    {
+        // wait update layout
+        yield return null;
+        // update layout by force
+        Canvas.ForceUpdateCanvases();
+        // config scroll position
+        scrollRect.verticalNormalizedPosition = 1f;
     }
 }

@@ -8,7 +8,7 @@ public enum SceneName
 { 
     IntroScene,
     RunningScene,
-    // EndingScene
+    EndingScene
 }
 
 [System.Serializable]
@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    private int endingIndex;
+    public int EndingIndex
+    {
+        get => endingIndex;
+        set => endingIndex = value;
+    }
     private PlayerData data;
     public PlayerData Data
     {
@@ -77,7 +83,7 @@ public class GameManager : MonoBehaviour
     public void AsyncLoadNextScene(SceneName nextScene)
     {
         nextSceneName = nextScene;
-        SceneManager.LoadScene(SceneName.RunningScene.ToString());
+        SceneManager.LoadScene(nextScene.ToString());
     }
     #endregion
     #region _Save&Load_

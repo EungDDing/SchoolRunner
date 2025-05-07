@@ -139,10 +139,6 @@ public class UIManager : MonoBehaviour
             albumPanel.LeanScale(Vector3.one, 0.7f).setEase(LeanTweenType.easeInOutElastic);
             albumUI.RefreshAlbum();
         }
-        else
-        {
-            albumPanel.LeanScale(Vector3.zero, 0.7f).setEase(LeanTweenType.easeInOutElastic);
-        }
     }
     private void FadeOutScreen()
     {
@@ -166,5 +162,10 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
+    }
+    public void CloseAlbumPanel()
+    {
+        isOpenAlbum = !isOpenAlbum;
+        albumPanel.LeanScale(Vector3.zero, 0.7f).setEase(LeanTweenType.easeInOutElastic);
     }
 }
