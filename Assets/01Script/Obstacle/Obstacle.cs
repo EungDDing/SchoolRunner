@@ -32,7 +32,6 @@ public abstract class Obstacle : MonoBehaviour, IScroll
 
         StartCoroutine(GetScrollManager());
         SetObstacleType();
-        Debug.Log(obstacleType);
     }
     private IEnumerator GetScrollManager()
     {
@@ -60,7 +59,7 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     }
     private void Update()
     {
-        Scroll();
+        // Scroll();
         if (transform.position.z < returnZ)
         {
             ReturnObject();
@@ -93,7 +92,6 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     public void ReturnObject()
     {
         SpawnObjectManager.instance.ReturnObjectToPool(gameObject, (int)obstacleType);
-        Debug.Log(obstacleType);
     }
     public abstract void SetObstacleType();
 }

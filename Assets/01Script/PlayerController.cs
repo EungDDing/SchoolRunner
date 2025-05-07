@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoveOnce = false;
     private bool isInvincible = false;
 
+    private bool isStop = false;
     private int currentHP;
     private int maxHP = 3;
     private bool isInit = false;
@@ -29,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
+
+    public delegate void GameOver();
+    public event GameOver OnGameOver;
     public int CurrentHP
     {
         get => currentHP;
@@ -54,10 +58,11 @@ public class PlayerController : MonoBehaviour
             transform.position += Vector3.forward * (forwardSpeed * Time.deltaTime);
             animator.SetBool("Start", true);
         }
-        if (isInit)
+        if (isInit && !isStop)
         {
             MoveSide();
             Jump();
+            HandleTouchInput();
         } 
     }
     public void InitPlayer()
@@ -154,6 +159,65 @@ public class PlayerController : MonoBehaviour
             isDrag = false;
         }
     }
+    // touch
+    private void HandleTouchInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPos = touch.position;
+                isDrag = true;
+            }
+            else if ((touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) && isDrag)
+            {
+                Vector2 touchEndPos = touch.position;
+                float deltaX = touchEndPos.x - touchStartPos.x;
+                float deltaY = touchEndPos.y - touchStartPos.y;
+
+                if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
+                {
+                    if (Mathf.Abs(deltaX) > Screen.width * 0.1f && !isMove)
+                    {
+                        if (deltaX > 0 && currentLane < 2)
+                        {
+                            if (!isJump || (isJump && !isMoveOnce))
+                            {
+                                currentLane++;
+                                if (isJump) isMoveOnce = true;
+                            }
+                        }
+                        else if (deltaX < 0 && currentLane > 0)
+                        {
+                            if (!isJump || (isJump && !isMoveOnce))
+                            {
+                                currentLane--;
+                                if (isJump) isMoveOnce = true;
+                            }
+                        }
+                        isMove = true;
+                        isDrag = false;
+                    }
+                }
+                else
+                {
+                    if (deltaY > Screen.height * 0.1f && !isJump)
+                    {
+                        animator.SetTrigger("Jump");
+                        rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                        isJump = true;
+                        isDrag = false;
+                    }
+                }
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                isDrag = false;
+            }
+        }
+    }
     private void GameStart()
     {
         isGameStart = true;
@@ -164,6 +228,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         isGameStart = false;
         isInit = true;
+        isStop = false;
         transform.position = new Vector3(0.0f, 2.0f, 0.0f);
     }
     private void OnCollisionEnter(Collision collision)
@@ -186,7 +251,8 @@ public class PlayerController : MonoBehaviour
             if (CurrentHP <= 0)
             {
                 // game over
-                Debug.Log("게임 종료");
+                OnGameOver?.Invoke();
+                isStop = true;
             }
         }
     }

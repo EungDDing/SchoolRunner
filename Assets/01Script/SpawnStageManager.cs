@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class SpawnStageManager : MonoBehaviour
@@ -20,14 +18,15 @@ public class SpawnStageManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        Init();
     }
-    private void Start()
+    public void Init()
     {
         stagePoolQueue = new Queue<Stage>[stagePrefabs.Length];
 
