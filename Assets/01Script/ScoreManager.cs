@@ -113,43 +113,43 @@ public class ScoreManager : MonoBehaviour
     }
     public void CheckResult()
     {
-        if (game > 25)
+        if (game >= 25)
         {
             GameManager.instance.Data.endings[0].isUnlocked = true;
             GameManager.instance.EndingIndex = 0;
             GameManager.instance.SaveData();
         }
-        else if (game > 15)
+        else if (game >= 15)
         {
             GameManager.instance.Data.endings[6].isUnlocked = true;
             GameManager.instance.EndingIndex = 6;
             GameManager.instance.SaveData();
         }
-        else if (book > 25)
+        else if (book >= 25)
         {
             GameManager.instance.Data.endings[1].isUnlocked = true;
             GameManager.instance.EndingIndex = 1;
             GameManager.instance.SaveData();
         }
-        else if (dumbbell > 25)
+        else if (dumbbell >= 25)
         {
             GameManager.instance.Data.endings[3].isUnlocked = true;
             GameManager.instance.EndingIndex = 3;
             GameManager.instance.SaveData();
         }
-        else if (mic > 25)
+        else if (mic >= 25)
         {
             GameManager.instance.Data.endings[2].isUnlocked = true;
             GameManager.instance.EndingIndex = 2;
             GameManager.instance.SaveData();
         }
-        else if (book > 15 && mic > 15)
+        else if (book >= 15 && mic >= 15)
         {
             GameManager.instance.Data.endings[4].isUnlocked = true;
             GameManager.instance.EndingIndex = 4;
             GameManager.instance.SaveData();
         }
-        else if (book > 15 && dumbbell > 15)
+        else if (book >= 15 && dumbbell >= 15)
         {
             GameManager.instance.Data.endings[5].isUnlocked = true;
             GameManager.instance.EndingIndex = 5;

@@ -19,13 +19,17 @@ public class SpawnObjectManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
+        Init();
+    }
+
+    public void Init()
+    {
         objectPoolQueue = new Queue<GameObject>[objectPrefabs.Length];
 
         for (int i = 0; i < objectPrefabs.Length; i++)
@@ -34,7 +38,6 @@ public class SpawnObjectManager : MonoBehaviour
             Allocate(i);
         }
     }
-
     private void Allocate(int index)
     {
         for (int i = 0; i < poolSize; i++)

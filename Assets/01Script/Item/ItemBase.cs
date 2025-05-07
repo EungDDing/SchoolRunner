@@ -50,7 +50,7 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     }
     private void Update()
     {
-        Scroll(); 
+        // Scroll(); 
         if (transform.position.z < returnZ)
         {
             ReturnObject();

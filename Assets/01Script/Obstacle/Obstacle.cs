@@ -59,7 +59,7 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     }
     private void Update()
     {
-        Scroll();
+        // Scroll();
         if (transform.position.z < returnZ)
         {
             ReturnObject();

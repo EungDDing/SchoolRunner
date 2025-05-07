@@ -32,7 +32,7 @@ public class Stage : MonoBehaviour, IScroll
     }
     private void Update()
     {
-        Scroll();
+        // Scroll();
     }
     
     public void InitStage()

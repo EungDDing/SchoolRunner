@@ -7,6 +7,10 @@ public class ScrollManager : MonoBehaviour
     private List<IScroll> scrollObjects;
     [SerializeField] private float scrollSpeed = 15.0f;
 
+    private PlayerController playerController;
+    private GameObject obj;
+
+    private bool isStop;
     private void Awake() 
     {
         scrollObjects = new List<IScroll>();
@@ -18,6 +22,17 @@ public class ScrollManager : MonoBehaviour
                 scrollObjects.Add(scrollObject);
             }
         }
+        obj = GameObject.FindWithTag("Player");
+        obj.TryGetComponent<PlayerController>(out playerController);
+        Debug.Log(obj.name);
+    }
+    private void OnEnable()
+    {
+        playerController.OnGameOver += StopScroll;
+    }
+    private void OnDisable()
+    {
+        playerController.OnGameOver -= StopScroll;
     }
     public void AddScrollObject(IScroll scrollObject)
     {
@@ -42,7 +57,7 @@ public class ScrollManager : MonoBehaviour
     {
         foreach (var scroll in new List<IScroll>(scrollObjects))
         {
-            if (scroll != null)
+            if (scroll != null && !isStop)
             {
                 scroll.Scroll();
             }
@@ -50,6 +65,7 @@ public class ScrollManager : MonoBehaviour
     }
     public void InitScrollManager(float newSpeed)
     {
+        isStop = false;
         scrollSpeed = newSpeed;
         foreach(var scroll in scrollObjects)
         {
@@ -58,5 +74,9 @@ public class ScrollManager : MonoBehaviour
                 scrollObject.SetScrollSpeed(newSpeed);
             }    
         }
+    }
+    private void StopScroll()
+    { 
+        isStop = true;
     }
 }

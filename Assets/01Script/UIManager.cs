@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button configCloseButton;
 
     [SerializeField] private Image endIamge;
+    [SerializeField] private Image gameoverFadeEffect;
+    [SerializeField] private Image gameoverImage;
 
     private bool isOpenAlbum;
     private PlayerController playerController;
@@ -72,6 +74,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeGame += ChangeGameValue;
         playerController.OnChangeHP += ChangeHeart;
         scoreManager.OnGameEnd += FadeOutScreen;
+        playerController.OnGameOver += GameOver;
     }
     private void OnDisable()
     {
@@ -81,6 +84,7 @@ public class UIManager : MonoBehaviour
         scoreManager.OnChangeGame -= ChangeGameValue;
         playerController.OnChangeHP -= ChangeHeart;
         scoreManager.OnGameEnd -= FadeOutScreen;
+        playerController.OnGameOver -= GameOver;
     }
     public void ChangeDumbbellValue(int value)
     {
@@ -167,5 +171,48 @@ public class UIManager : MonoBehaviour
     {
         isOpenAlbum = !isOpenAlbum;
         albumPanel.LeanScale(Vector3.zero, 0.7f).setEase(LeanTweenType.easeInOutElastic);
+    }
+    public void GameOver()
+    {
+        StartCoroutine(GameOverEffect());
+    }
+    private IEnumerator GameOverEffect()
+    {
+        float time = 0.0f;
+        float percent = 0.0f;
+        float fadeEffectTime = 1.0f;
+
+        while (percent < 1.0f)
+        {
+            time += Time.deltaTime;
+            percent = time / fadeEffectTime;
+
+            Color color = gameoverFadeEffect.color;
+            color.a = Mathf.Lerp(0, 1, percent);
+            gameoverFadeEffect.color = color;
+
+            yield return null;
+        }
+
+        gameoverImage.gameObject.SetActive(true);
+        
+        time = 0.0f;
+        percent = 0.0f;
+        while (percent < 1.0f)
+        {
+            time += Time.deltaTime;
+            percent = time / fadeEffectTime;
+
+            Color color = gameoverFadeEffect.color;
+            color.a = Mathf.Lerp(1, 0, percent);
+            gameoverFadeEffect.color = color;
+
+            yield return null;
+        }
+        gameoverFadeEffect.gameObject.SetActive(false);
+    }
+    public void GoLobby()
+    {
+        GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
     }
 }

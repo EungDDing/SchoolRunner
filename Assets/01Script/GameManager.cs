@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
 
         dataPath = Application.persistentDataPath + "/Save";
     }
-    
     #region _SceneManager_
     private SceneName nextSceneName;
     public SceneName NextScene => nextSceneName;

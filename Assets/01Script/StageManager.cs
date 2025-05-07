@@ -23,7 +23,6 @@ public class StageManager : MonoBehaviour
         isSpawn = true;
         obj = new Stage[20];
     }
-
     public void InitStageManager()
     {
         isSpawn = true;
