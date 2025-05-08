@@ -32,5 +32,13 @@ public class RunningSceneManager : MonoBehaviour
         scrollManager.InitScrollManager(30.0f);
         scoreManager.InitData();
     }
+    public void StopGame()
+    {
+        scrollManager.StopScroll();
+    }
+    public void ResumeGame()
+    {
+        scrollManager.StartScroll();
+    }
 }
 
