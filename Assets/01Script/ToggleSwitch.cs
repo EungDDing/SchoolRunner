@@ -45,8 +45,8 @@ public class ToggleSwitch : MonoBehaviour
     {
         while (Vector2.Distance(handleTransform.anchoredPosition, targetPos) > 0.1f)
         {
-            handleTransform.anchoredPosition = Vector2.Lerp(handleTransform.anchoredPosition, targetPos, Time.deltaTime * fillSpeed);
-            fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, fillAmount, Time.deltaTime * fillSpeed);
+            handleTransform.anchoredPosition = Vector2.Lerp(handleTransform.anchoredPosition, targetPos, Time.unscaledDeltaTime * fillSpeed);
+            fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, fillAmount, Time.unscaledDeltaTime * fillSpeed);
             yield return null;
         }
         handleTransform.anchoredPosition = targetPos;
