@@ -75,8 +75,12 @@ public class ScrollManager : MonoBehaviour
             }    
         }
     }
-    private void StopScroll()
+    public void StopScroll()
     { 
         isStop = true;
+    }
+    public void StartScroll()
+    {
+        isStop = false;
     }
 }
