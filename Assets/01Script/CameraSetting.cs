@@ -11,7 +11,7 @@ public class CameraSetting : MonoBehaviour
 
     private Vector3 targetPos;
     private bool isStart = false;
-
+    
     private void Update()
     {
         if (isStart)

@@ -29,9 +29,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button configButton;
     [SerializeField] private Button configCloseButton;
 
+    [SerializeField] private Image gameConfigPopup;
+    [SerializeField] private Button gameConfigCloseButton;
+
     [SerializeField] private Image endIamge;
     [SerializeField] private Image gameoverFadeEffect;
     [SerializeField] private Image gameoverImage;
+
+    [SerializeField] private Image pauseMenu;
 
     private bool isOpenAlbum;
     private PlayerController playerController;
@@ -116,13 +121,15 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    private void OpenConfigPopup()
+    public void OpenConfigPopup()
     {
         configPopup.gameObject.SetActive(true);
+        gameConfigPopup.gameObject.SetActive(true);
     }
-    private void CloseConfigPopup()
+    public void CloseConfigPopup()
     {
         configPopup.gameObject.SetActive(false);
+        gameConfigPopup.gameObject.SetActive(false);
     }
     private void ChangeCanvas()
     {
@@ -132,7 +139,7 @@ public class UIManager : MonoBehaviour
     }
     private IEnumerator OnRunCanvas()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         runCanvas.gameObject.SetActive(true);
     }
     public void ShowAlbum()
@@ -214,5 +221,15 @@ public class UIManager : MonoBehaviour
     public void GoLobby()
     {
         GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
+    }
+    public void OpenPauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+    public void ClosePauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }
