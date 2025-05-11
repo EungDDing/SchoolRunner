@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private Transform ballSpawnPosition;
+    [SerializeField] private GameObject ballPrefabs;
 
     private Renderer[] playerRenderers;
     private Animator animator; 
@@ -282,5 +284,43 @@ public class PlayerController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public void SetInvincible()
+    {
+        StartCoroutine(Invincible());
+    }
+    private IEnumerator Invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(3.0f);
+        isInvincible = false;
+    }
+    public void RecoverHP()
+    {
+        CurrentHP++;
+        if (CurrentHP >= 3)
+        {
+            CurrentHP = 3;
+        }
+    }
+    public void ShootBall()
+    {
+        StartCoroutine(Ball());
+    }
+    private IEnumerator Ball()
+    {
+        float duration = 3.0f;
+
+        GameObject ballObject = Instantiate(ballPrefabs, ballSpawnPosition.position, Quaternion.identity);
+        Rigidbody ballRigidBody = ballObject.GetComponent<Rigidbody>();
+        ballRigidBody.velocity = Vector3.forward * 20.0f;
+
+        float timer = 0.0f;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(ballObject);
     }
 }

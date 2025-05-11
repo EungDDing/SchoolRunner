@@ -79,6 +79,11 @@ public abstract class Obstacle : MonoBehaviour, IScroll
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
             StartCoroutine(ReturnObstacle());
         }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
+            StartCoroutine(ReturnObstacle());
+        }
     }
     public IEnumerator ReturnObstacle()
     {
