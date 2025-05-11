@@ -6610,6 +6610,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353523964}
   m_CullTransparentMesh: 1
+--- !u!1 &1368262006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1368262008}
+  - component: {fileID: 1368262007}
+  m_Layer: 0
+  m_Name: PostProcessManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1368262007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368262006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af1f249b3051dd48b545bbf571a755f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 829388670}
+  stageProfiles:
+  - {fileID: 11400000, guid: da6b2bc6d271d26479de72046e629fae, type: 2}
+  - {fileID: 11400000, guid: ab31bd34f932717418f8ed264db760d1, type: 2}
+  - {fileID: 11400000, guid: 84e78f329bec3c44b872b8a60af0ec44, type: 2}
+  - {fileID: 11400000, guid: 3e177a4051cefd542ae2b9237fdb8d8e, type: 2}
+  - {fileID: 11400000, guid: b80c706fbfda60e4ba5014d7be301033, type: 2}
+--- !u!4 &1368262008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368262006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.6759, y: 5.504674, z: -71.363884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369147407
 GameObject:
   m_ObjectHideFlags: 0
@@ -9104,7 +9155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 46275200}
+  m_AnchoredPosition: {x: 0, y: 58695200}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1953706817
@@ -18222,3 +18273,4 @@ SceneRoots:
   - {fileID: 941488373}
   - {fileID: 1842040983}
   - {fileID: 7816344616121155979}
+  - {fileID: 1368262008}
