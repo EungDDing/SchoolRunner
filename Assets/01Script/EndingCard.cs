@@ -10,7 +10,7 @@ public class EndingCard : MonoBehaviour
 
     private int id;
 
-    public delegate void ClickCard(int id);
+    public delegate void ClickCard();
     public ClickCard OnClickCard;
     public void DrawEndingCard(int endingID)
     {
@@ -36,6 +36,11 @@ public class EndingCard : MonoBehaviour
 
     public void ClickEndingCard()
     {
-
+        if (GameManager.instance.Data.endings[id].isUnlocked)
+        {
+            Debug.Log("ending ID : " + id);
+            GameManager.instance.EndingIndex = id;
+            OnClickCard?.Invoke();
+        }    
     }
 }

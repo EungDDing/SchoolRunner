@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private GameObject ballPrefabs;
 
+    [SerializeField] private ParticleSystem runParticle;
+    [SerializeField] private ParticleSystem healParticle;
+    [SerializeField] private ParticleSystem invincibleParticle;
+
     private Renderer[] playerRenderers;
     private Animator animator; 
     private float forwardSpeed = 20.0f;
@@ -147,9 +151,11 @@ public class PlayerController : MonoBehaviour
                 {
                     // animation test
                     animator.SetTrigger("Jump");
-
+                    
                     rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     isJump = true;
+
+                    runParticle.Stop();
                 }
 
                 isDrag = false;
@@ -232,14 +238,16 @@ public class PlayerController : MonoBehaviour
         isInit = true;
         isStop = false;
         transform.position = new Vector3(0.0f, 2.0f, 0.0f);
+        runParticle.Play();
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && isInit)
         {
             animator.SetTrigger("Land");
             isJump = false;
             isMoveOnce = false;
+            runParticle.Play();
         }
     }
     public void TakeDamage(int damage)
@@ -255,6 +263,7 @@ public class PlayerController : MonoBehaviour
                 // game over
                 OnGameOver?.Invoke();
                 isStop = true;
+                runParticle.Stop();
             }
         }
     }
@@ -292,11 +301,15 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Invincible()
     {
         isInvincible = true;
+        invincibleParticle.Play();
         yield return new WaitForSeconds(3.0f);
         isInvincible = false;
+        invincibleParticle.Stop();
     }
     public void RecoverHP()
     {
+        Debug.Log("힐");
+        healParticle.Play();
         CurrentHP++;
         if (CurrentHP >= 3)
         {

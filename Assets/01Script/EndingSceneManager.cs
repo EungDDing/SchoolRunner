@@ -32,7 +32,7 @@ public class EndingSceneManager : MonoBehaviour
         if (DataManager.instance.GetEndingData(endingIndex, out EndingData_Entity endingData))
         {
             endingImage.sprite = Resources.Load<Sprite>(endingData.Image);
-            Debug.Log(endingData.Script);
+            Debug.Log(endingData.Script01);
         }
     }
     private void DisplayDialog(int endingIndex)
@@ -41,7 +41,7 @@ public class EndingSceneManager : MonoBehaviour
 
         if (DataManager.instance.GetEndingData(endingIndex, out EndingData_Entity endingData))
         {
-            StartCoroutine(PrintText(endingData.Script));
+            StartCoroutine(PrintText(endingData.Script01));
         }
     }
     private IEnumerator PrintText(string text)
