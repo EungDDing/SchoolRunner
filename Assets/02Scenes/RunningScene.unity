@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.4198113, g: 0.70719445, b: 1, a: 1}
+  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.003
   m_LinearFogStart: 0
@@ -122,6 +122,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &8978157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1090789840}
+    m_Modifications:
+    - target: {fileID: 7478418002152235642, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_Name
+      value: kid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478418002152235642, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
 --- !u!1 &20637624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2133,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414826502}
   m_CullTransparentMesh: 1
+--- !u!4 &415739665 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7819230956293454016, guid: d3f9073a4e5ba7f49b1893d7ad4d1b40, type: 3}
+  m_PrefabInstance: {fileID: 8978157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &434266068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,7 +4000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: da6b2bc6d271d26479de72046e629fae, type: 2}
-  isGlobal: 1
+  isGlobal: 0
   blendDistance: 0
   weight: 1
   priority: 0
@@ -5457,6 +5535,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2807326802896777805}
+  - {fileID: 415739665}
   - {fileID: 1015075142}
   - {fileID: 1041628604}
   - {fileID: 1390451913}
@@ -5497,14 +5576,21 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090789834}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 147bda12d3fefd8478b4d7824ca35934, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b9a80102c2402cc47868e1aa328119a1, type: 3}
   m_Controller: {fileID: 9100000, guid: 1a8a01a8b9a0a4943bc68cffb2b44f71, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Bip001'\n\tTransform 'Bip001 L Finger4'\n\tTransform
+    'Bip001 L Finger0'\n\tTransform 'Bip001 R Clavicle'\n\tTransform 'Bip001 R UpperArm'\n\tTransform
+    'Bip001 R Finger2'\n\tTransform 'Bip001 Head'\n\tTransform 'Bip001 Spine1'\n\tTransform
+    'Bip001 R Finger11'\n\tTransform 'Bip001 L UpperArm'\n\tand more ...\n\tFrom
+    animation clip 'Run'\n\tFrom animation clip 'Jump_up'\n\tFrom animation clip
+    'Land'\n\tFrom animation clip 'Idle'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -10029,7 +10115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.004119873, y: 20932000}
+  m_AnchoredPosition: {x: 0.004119873, y: 34610400}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1953706817
@@ -41630,7 +41716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3307262036088630581
 Transform:
   m_ObjectHideFlags: 0
