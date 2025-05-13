@@ -7,7 +7,10 @@ public class EndingData_Entity
 {
     public int EndingID;
     public string Title;
-    public string Script;
+    public string Script01;
+    public string Script02;
+    public string Script03;
     public string Image;
+    public string Name;
 }
 

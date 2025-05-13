@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private Transform ballSpawnPosition;
+    [SerializeField] private GameObject ballPrefabs;
+
+    [SerializeField] private ParticleSystem runParticle;
+    [SerializeField] private ParticleSystem healParticle;
+    [SerializeField] private ParticleSystem invincibleParticle;
 
     private Renderer[] playerRenderers;
     private Animator animator; 
@@ -145,9 +151,11 @@ public class PlayerController : MonoBehaviour
                 {
                     // animation test
                     animator.SetTrigger("Jump");
-
+                    
                     rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     isJump = true;
+
+                    runParticle.Stop();
                 }
 
                 isDrag = false;
@@ -230,14 +238,16 @@ public class PlayerController : MonoBehaviour
         isInit = true;
         isStop = false;
         transform.position = new Vector3(0.0f, 2.0f, 0.0f);
+        runParticle.Play();
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && isInit)
         {
             animator.SetTrigger("Land");
             isJump = false;
             isMoveOnce = false;
+            runParticle.Play();
         }
     }
     public void TakeDamage(int damage)
@@ -253,6 +263,7 @@ public class PlayerController : MonoBehaviour
                 // game over
                 OnGameOver?.Invoke();
                 isStop = true;
+                runParticle.Stop();
             }
         }
     }
@@ -282,5 +293,47 @@ public class PlayerController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public void SetInvincible()
+    {
+        StartCoroutine(Invincible());
+    }
+    private IEnumerator Invincible()
+    {
+        isInvincible = true;
+        invincibleParticle.Play();
+        yield return new WaitForSeconds(3.0f);
+        isInvincible = false;
+        invincibleParticle.Stop();
+    }
+    public void RecoverHP()
+    {
+        Debug.Log("힐");
+        healParticle.Play();
+        CurrentHP++;
+        if (CurrentHP >= 3)
+        {
+            CurrentHP = 3;
+        }
+    }
+    public void ShootBall()
+    {
+        StartCoroutine(Ball());
+    }
+    private IEnumerator Ball()
+    {
+        float duration = 3.0f;
+
+        GameObject ballObject = Instantiate(ballPrefabs, ballSpawnPosition.position, Quaternion.identity);
+        Rigidbody ballRigidBody = ballObject.GetComponent<Rigidbody>();
+        ballRigidBody.velocity = Vector3.forward * 20.0f;
+
+        float timer = 0.0f;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(ballObject);
     }
 }

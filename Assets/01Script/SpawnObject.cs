@@ -13,7 +13,10 @@ public enum ObjectType
     Chair,
     VaultingBox,
     BookShelf,
-    Bench
+    Bench,
+    Vitamin,
+    Bandage,
+    Ball
 }
 
 public enum ObjectPosition
@@ -91,6 +94,18 @@ public class SpawnObject : MonoBehaviour
             else if (spawnRate < 430)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
+            }
+            else if (spawnRate < 440)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Vitamin, transform.position);
+            }
+            else if (spawnRate < 450)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Bandage, transform.position);
+            }
+            else if (spawnRate < 460)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Ball, transform.position);
             }
         }
         else if (objectPos == ObjectPosition.Air)
