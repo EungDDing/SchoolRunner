@@ -8,6 +8,9 @@ TagManager:
   - Item
   - Obstacle
   - HitBox
+  - Album
+  - Config
+  - Ball
   layers:
   - Default
   - TransparentFX

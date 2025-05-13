@@ -8,8 +8,14 @@ public class EndingCard : MonoBehaviour
     [SerializeField] private Image endingImage;
     [SerializeField] private Image unlockImage;
 
+    private int id;
+
+    public delegate void ClickCard();
+    public ClickCard OnClickCard;
     public void DrawEndingCard(int endingID)
     {
+        id = endingID;
+
         if (DataManager.instance.GetEndingData(endingID, out EndingData_Entity endingData))
         {
             endingImage.sprite = Resources.Load<Sprite>(endingData.Image);
@@ -26,5 +32,15 @@ public class EndingCard : MonoBehaviour
                 endingImage.enabled = true;
             }
         }
+    }
+
+    public void ClickEndingCard()
+    {
+        if (GameManager.instance.Data.endings[id].isUnlocked)
+        {
+            Debug.Log("ending ID : " + id);
+            GameManager.instance.EndingIndex = id;
+            OnClickCard?.Invoke();
+        }    
     }
 }

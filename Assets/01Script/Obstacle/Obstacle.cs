@@ -28,7 +28,7 @@ public abstract class Obstacle : MonoBehaviour, IScroll
 
         gameObject.TryGetComponent<Rigidbody>(out rig);
         scrollSpeed = 0.0f;
-        flyForce = 7.0f;
+        flyForce = 14.0f;
 
         StartCoroutine(GetScrollManager());
         SetObstacleType();
@@ -76,6 +76,11 @@ public abstract class Obstacle : MonoBehaviour, IScroll
         if (other.gameObject.CompareTag("HitBox"))
         {
             playerController.TakeDamage(damage);
+            rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
+            StartCoroutine(ReturnObstacle());
+        }
+        if (other.gameObject.CompareTag("Ball"))
+        {
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
             StartCoroutine(ReturnObstacle());
         }

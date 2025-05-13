@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image pauseMenu;
 
     private bool isOpenAlbum;
+    
     private PlayerController playerController;
     private ScoreManager scoreManager;
     private ItemManager itemManager;
@@ -90,6 +91,10 @@ public class UIManager : MonoBehaviour
         playerController.OnChangeHP -= ChangeHeart;
         scoreManager.OnGameEnd -= FadeOutScreen;
         playerController.OnGameOver -= GameOver;
+    }
+    private void Update()
+    {
+        OnClickObject();
     }
     public void ChangeDumbbellValue(int value)
     {
@@ -231,5 +236,34 @@ public class UIManager : MonoBehaviour
     {
         pauseMenu.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
+    }
+    public void OnClickObject()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        {
+            Vector3 inputPosition = Vector3.zero;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                inputPosition = Input.mousePosition;
+            }
+            else if (Input.touchCount > 0)
+            {
+                inputPosition = Input.GetTouch(0).position;
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 50.0f))
+            {
+                if (hit.collider.CompareTag("Config"))
+                {
+                    OpenConfigPopup();
+                }
+                else if(hit.collider.CompareTag("Album"))
+                {
+                    ShowAlbum();
+                }
+            }
+        }
     }
 }

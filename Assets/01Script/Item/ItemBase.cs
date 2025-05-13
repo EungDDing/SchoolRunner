@@ -10,16 +10,22 @@ public abstract class ItemBase : MonoBehaviour, IScroll
     private ObjectType type;
     private ScrollManager scrollManager;
     private float returnZ = -200.0f;
-
+    private PlayerController playerController;
     public ScoreManager ScoreManager
     {
         get => scoreManager;
     }
+    public PlayerController PlayerController
+    {
+        get => playerController;
+    }
+
     public virtual void Start()
     {
         GameObject obj = GameObject.Find("ScoreManager");
         obj.TryGetComponent<ScoreManager>(out scoreManager);
-
+        obj = GameObject.FindWithTag("Player");
+        obj.TryGetComponent<PlayerController>(out playerController);
         mainCamera = Camera.main;
 
         StartCoroutine(GetScrollManager());
