@@ -34,6 +34,14 @@ public class PlayerController : MonoBehaviour
     private bool isInit = false;
     private bool isGameStart = false;
 
+    private bool isTutorial;
+
+    public bool IsTutorial
+    {
+        get => isTutorial;
+    }
+
+
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
 
