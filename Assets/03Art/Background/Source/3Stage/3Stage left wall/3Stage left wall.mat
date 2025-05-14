@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 3Stage left wall
-  m_Shader: {fileID: 4800000, guid: 7f279f4e87e01304c864e85d0d5afe2a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 08ed0d9dfc7b9d54480990896ab62fe8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -83,6 +83,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 0
@@ -122,4 +126,5 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondaryNormalMap_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _SecondaryTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

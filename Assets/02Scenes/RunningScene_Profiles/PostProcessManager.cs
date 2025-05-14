@@ -1,20 +1,49 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 public class PostProcessChanger : MonoBehaviour
 {
-    public PostProcessVolume postProcessVolume;
-    public PostProcessProfile[] stageProfiles;
+    [SerializeField] private PostProcessVolume postProcessVolume;
+    [SerializeField] private PostProcessProfile[] stageProfiles;
 
-    public void ChangePostProcessProfile(int stageIndex)
+    private int stageCount;
+    private void Awake()
     {
-        if (stageIndex >= 0 && stageIndex < stageProfiles.Length)
+        stageCount = 0;
+        Stage.OnChangeStageCount += StageCount;
+    }
+    public void ChangePostProcessProfile()
+    {
+        if (stageCount % 5 == 0)
         {
-            postProcessVolume.profile = stageProfiles[stageIndex];
+            Debug.Log(postProcessVolume.profile);
+            postProcessVolume.profile = stageProfiles[4];
         }
-        else
+        else if (stageCount / 5 == 0)
         {
-            Debug.LogWarning("½ºÅ×ÀÌÁö ÀÎµ¦½º Àß¸ø µé¾î°¨!");
+            Debug.Log(postProcessVolume.profile);
+            postProcessVolume.profile = stageProfiles[0];
         }
+        else if (stageCount / 5 == 1)
+        {
+            Debug.Log(postProcessVolume.profile);
+            postProcessVolume.profile = stageProfiles[1];
+        }
+        else if (stageCount / 5 == 2)
+        {
+            Debug.Log(postProcessVolume.profile);
+            postProcessVolume.profile = stageProfiles[2];
+        }
+        else if (stageCount / 5 == 3)
+        {
+            Debug.Log(postProcessVolume.profile);
+            postProcessVolume.profile = stageProfiles[3];
+        }
+    }
+    private void StageCount()
+    {
+        Debug.Log(stageCount);
+        stageCount++;
+        ChangePostProcessProfile();
     }
 }

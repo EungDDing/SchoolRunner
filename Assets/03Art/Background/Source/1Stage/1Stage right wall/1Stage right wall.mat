@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 1Stage right wall
-  m_Shader: {fileID: 4800000, guid: 7f279f4e87e01304c864e85d0d5afe2a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 08ed0d9dfc7b9d54480990896ab62fe8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
