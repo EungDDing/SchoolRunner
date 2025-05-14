@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 public class PostProcessChanger : MonoBehaviour
@@ -9,42 +9,40 @@ public class PostProcessChanger : MonoBehaviour
     private int stageCount;
     private void Awake()
     {
+        stageCount = 0;
         Stage.OnChangeStageCount += StageCount;
     }
     public void ChangePostProcessProfile()
     {
         if (stageCount % 5 == 0)
         {
-            Debug.Log("post process Bridge");
+            Debug.Log(postProcessVolume.profile);
             postProcessVolume.profile = stageProfiles[4];
         }
         else if (stageCount / 5 == 0)
         {
-            Debug.Log("post process 01");
+            Debug.Log(postProcessVolume.profile);
             postProcessVolume.profile = stageProfiles[0];
         }
         else if (stageCount / 5 == 1)
         {
-            Debug.Log("post process 02");
+            Debug.Log(postProcessVolume.profile);
             postProcessVolume.profile = stageProfiles[1];
         }
         else if (stageCount / 5 == 2)
         {
-            Debug.Log("post process 03");
+            Debug.Log(postProcessVolume.profile);
             postProcessVolume.profile = stageProfiles[2];
         }
         else if (stageCount / 5 == 3)
         {
-            Debug.Log("post process 04");
+            Debug.Log(postProcessVolume.profile);
             postProcessVolume.profile = stageProfiles[3];
-        }
-        else
-        {
-            Debug.LogWarning("½ºÅ×ÀÌÁö ÀÎµ¦½º Àß¸ø µé¾î°¨!");
         }
     }
     private void StageCount()
     {
+        Debug.Log(stageCount);
         stageCount++;
         ChangePostProcessProfile();
     }
