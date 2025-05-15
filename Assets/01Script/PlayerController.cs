@@ -36,12 +36,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isTutorial;
 
-    public bool IsTutorial
-    {
-        get => isTutorial;
-    }
-
-
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
 
