@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,7 @@ public class DialogLine
 {
     public int No;
     public string Script;
+    public string Type;
 }
 public class DialogReader : MonoBehaviour
 {
@@ -29,7 +31,8 @@ public class DialogReader : MonoBehaviour
             DialogLine dialog = new DialogLine
             {
                 No = int.Parse(values[0]),
-                Script = values[1]
+                Script = values[1],
+                Type = values[2]
             };
 
             dialogList.Add(dialog);

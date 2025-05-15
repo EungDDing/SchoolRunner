@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialSceneManager : MonoBehaviour
@@ -12,11 +13,12 @@ public class TutorialSceneManager : MonoBehaviour
     private DialogReader dialogReader;
     private List<DialogLine> dialogLines;
     private int currentIndex;
-
+    private bool isStop;
     private void Awake()
     {
         TryGetComponent<DialogReader>(out dialogReader);
         currentIndex = 0;
+        isStop = false;
     }
     private void Start()
     {
@@ -24,18 +26,27 @@ public class TutorialSceneManager : MonoBehaviour
 
         dialogLines = dialogReader.LoadDialog();
 
-        ShowDialog(currentIndex);
-
         StartGame();
     }
     private void OnEnable()
     {
-        Stage.OnChangeStageCount += Stop;
+        StopPosition.OnEnterStopPosition += Stop;
+    }
+    private void OnDisable()
+    {
+        StopPosition.OnEnterStopPosition -= Stop;
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && isStop)
+        {
+            NextDialog();
+        }
     }
     private void ShowDialog(int index)
     {
         DialogLine line = dialogLines[index];
-        Debug.Log(line.Script);
+        TutorialUIManager.instance.ShowDialog(line.Script);
     }
     public void LoadSceneInit()
     {
@@ -63,8 +74,45 @@ public class TutorialSceneManager : MonoBehaviour
     }
     public void Stop()
     {
-
+        Time.timeScale = 0.0f;
+        TutorialUIManager.instance.OnTutorialCanvas();
+        isStop = true;
+        ShowDialog(currentIndex);
     }
-   
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+    }
+
+    private void NextDialog()
+    {
+        Debug.Log("다음으로");
+
+        currentIndex++;
+
+        Debug.Log(currentIndex);
+
+        if (currentIndex >= dialogLines.Count)
+        {
+            TutorialUIManager.instance.OffTutorialCanvas();
+            return;
+        }
+
+        DialogLine line = dialogLines[currentIndex];
+
+        Debug.Log("line.Type = [" + line.Script + "]");
+        Debug.Log("line.Type = [" + line.Type + "]");
+        if (line.Type.Trim().Equals("Dialog", StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log("다음 dialog");
+            ShowDialog(currentIndex);
+        }
+        else if (line.Type.Trim().Equals("Event", StringComparison.OrdinalIgnoreCase))
+        {
+            TutorialUIManager.instance.OffTutorialCanvas();
+            isStop = false;
+            Resume();
+        }
+    }
 }
 
