@@ -21756,6 +21756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1463268544}
     m_Modifications:
+    - target: {fileID: 1267384763941270797, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
+      propertyPath: m_SortingOrder
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 2058352634659460993, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
       propertyPath: m_SortingOrder
       value: 14
@@ -21766,15 +21770,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775585389886953246, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5775585389886953246, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5775585389886953246, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5775585389886953246, guid: 98052e4256bfe92478c28205d6103c99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58576,7 +58580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2034588935
 MonoBehaviour:
   m_ObjectHideFlags: 0
