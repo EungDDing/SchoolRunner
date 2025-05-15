@@ -10,7 +10,8 @@ public class TutorialUIManager : MonoBehaviour
 
     [SerializeField] private Image[] heart;
 
-    [SerializeField] private Canvas tutorialCanvas;
+    [SerializeField] private Canvas middleCanvas;
+    [SerializeField] private Canvas frontCanvas;
     [SerializeField] private TextMeshProUGUI dialog;
     
     private PlayerController playerController;
@@ -54,17 +55,20 @@ public class TutorialUIManager : MonoBehaviour
     }
     public void OnTutorialCanvas()
     {
-        tutorialCanvas.gameObject.SetActive(true);
+        middleCanvas.gameObject.SetActive(true);
+        frontCanvas.gameObject.SetActive(true);
     }
     public void OffTutorialCanvas()
     {
-        tutorialCanvas.gameObject.SetActive(false);
+        middleCanvas.gameObject.SetActive(false);
+        frontCanvas.gameObject.SetActive(false);
     }
     public void ShowDialog(string text)
     {
-        if (!tutorialCanvas.gameObject.activeSelf)
+        if (!middleCanvas.gameObject.activeSelf)
         {
-            tutorialCanvas.gameObject.SetActive(true);
+            middleCanvas.gameObject.SetActive(true);
+            frontCanvas.gameObject.SetActive(true);
         }
         Debug.Log("uimanager show dialog");
         dialog.text = text;

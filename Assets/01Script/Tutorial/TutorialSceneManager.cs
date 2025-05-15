@@ -109,6 +109,7 @@ public class TutorialSceneManager : MonoBehaviour
         }
         else if (line.Type.Trim().Equals("Event", StringComparison.OrdinalIgnoreCase))
         {
+            currentIndex++;
             TutorialUIManager.instance.OffTutorialCanvas();
             isStop = false;
             Resume();
