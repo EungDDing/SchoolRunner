@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI welcomeText;
+    [SerializeField] private Image welcomeText;
     [SerializeField] private GameObject createPlayerPopup;
 
     private bool hasPlayerInfo;
@@ -61,7 +62,9 @@ public class IntroManager : MonoBehaviour
     {
         while (true)
         {
-            welcomeText.enabled = !welcomeText.enabled;
+            welcomeText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.7f);
+            welcomeText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.7f);
         }
     }
