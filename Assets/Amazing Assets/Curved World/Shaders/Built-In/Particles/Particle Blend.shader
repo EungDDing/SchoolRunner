@@ -5,7 +5,7 @@
 
 Shader "Amazing Assets/Curved World/Particles/Blend" {
 Properties {
-    [HideInInspector][CurvedWorldBendSettings] _CurvedWorldBendSettings("0|1", Vector) = (0, 0, 0, 0)
+    [HideInInspector][CurvedWorldBendSettings] _CurvedWorldBendSettings("0,2|1", Vector) = (0, 0, 0, 0)
     _MainTex ("Particle Texture", 2D) = "white" {}
     _InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
 }
@@ -28,7 +28,7 @@ Category {
 
             #include "UnityCG.cginc"
 
-#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_X_POSITIVE
+#pragma shader_feature_local CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_X_POSITIVE CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
 #define CURVEDWORLD_BEND_ID_1
 #pragma shader_feature_local CURVEDWORLD_DISABLED_ON
 #pragma shader_feature_local CURVEDWORLD_NORMAL_TRANSFORMATION_ON

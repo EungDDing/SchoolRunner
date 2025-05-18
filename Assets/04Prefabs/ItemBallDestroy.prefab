@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1923965849476369676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6232048123479901792}
+  m_Layer: 0
+  m_Name: ShootEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6232048123479901792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923965849476369676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3589513894764932743}
+  m_Father: {fileID: 562057160616404486}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7239143043578921008
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +127,7 @@ GameObject:
   - component: {fileID: 4404781903753742593}
   - component: {fileID: 3405345904750906038}
   - component: {fileID: -3075186018311858141}
+  - component: {fileID: 8432812550955286536}
   m_Layer: 0
   m_Name: ItemBallDestroy
   m_TagString: Ball
@@ -116,6 +149,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7565977753173127421}
+  - {fileID: 6232048123479901792}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4404781903753742593
@@ -178,3 +212,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601711e7f45b5bf4591fe24385f010dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootEffect: {fileID: 3589513894764932793}
+  collisiontEffect: {fileID: 834217708922982875, guid: 31a04e6e19f56e24cb5e1138c006ebe2, type: 3}
+--- !u!114 &8432812550955286536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653210513788127127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48afdf74187ef384ba44c0e191f4d0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 360
+--- !u!1001 &7877504021213519205
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6232048123479901792}
+    m_Modifications:
+    - target: {fileID: 6665899147862635484, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635484, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635484, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635484, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665899147862635491, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Wind Zone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+--- !u!4 &3589513894764932743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6665899147862635490, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+  m_PrefabInstance: {fileID: 7877504021213519205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3589513894764932793 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6665899147862635484, guid: 2f57c3642d577364fb0d4080ecb8ebc5, type: 3}
+  m_PrefabInstance: {fileID: 7877504021213519205}
+  m_PrefabAsset: {fileID: 0}

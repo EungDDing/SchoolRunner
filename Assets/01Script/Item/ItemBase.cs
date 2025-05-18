@@ -40,14 +40,14 @@ public abstract class ItemBase : MonoBehaviour, IScroll
 
         scrollManager.AddScrollObject(this);
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if (scrollManager != null)
         {
             scrollManager.AddScrollObject(this);
         }
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (scrollManager != null)
         {
