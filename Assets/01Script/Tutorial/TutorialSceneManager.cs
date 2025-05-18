@@ -86,8 +86,6 @@ public class TutorialSceneManager : MonoBehaviour
 
     private void NextDialog()
     {
-        Debug.Log("다음으로");
-
         currentIndex++;
 
         Debug.Log(currentIndex);
@@ -100,11 +98,8 @@ public class TutorialSceneManager : MonoBehaviour
 
         DialogLine line = dialogLines[currentIndex];
 
-        Debug.Log("line.Type = [" + line.Script + "]");
-        Debug.Log("line.Type = [" + line.Type + "]");
         if (line.Type.Trim().Equals("Dialog", StringComparison.OrdinalIgnoreCase))
         {
-            Debug.Log("다음 dialog");
             ShowDialog(currentIndex);
         }
         else if (line.Type.Trim().Equals("Event", StringComparison.OrdinalIgnoreCase))
