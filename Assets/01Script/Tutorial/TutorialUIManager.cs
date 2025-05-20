@@ -13,7 +13,10 @@ public class TutorialUIManager : MonoBehaviour
     [SerializeField] private Canvas middleCanvas;
     [SerializeField] private Canvas frontCanvas;
     [SerializeField] private TextMeshProUGUI dialog;
-    
+
+    [SerializeField] private List<Image> infoImage;
+    [SerializeField] private Button startButton;
+
     private PlayerController playerController;
     private GameObject obj;
 
@@ -72,5 +75,22 @@ public class TutorialUIManager : MonoBehaviour
         }
         Debug.Log("uimanager show dialog");
         dialog.text = text;
+    }
+    public void OpenInfoImage(int index)
+    {
+        infoImage[index].gameObject.SetActive(true);
+    }
+    public void CloseInfoImage(int index)
+    {
+        Debug.Log("Close info");
+        infoImage[index].gameObject.SetActive(false);
+    }
+    public void ShowStartButton()
+    {
+        startButton.gameObject.SetActive(true);
+    }
+    public void GoLobby()
+    {
+        GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
     }
 }

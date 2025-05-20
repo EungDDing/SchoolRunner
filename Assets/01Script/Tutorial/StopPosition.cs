@@ -12,6 +12,7 @@ public class StopPosition : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnEnterStopPosition?.Invoke();
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

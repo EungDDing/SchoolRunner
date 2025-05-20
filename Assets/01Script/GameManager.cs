@@ -8,7 +8,8 @@ public enum SceneName
 { 
     IntroScene,
     RunningScene,
-    EndingScene
+    EndingScene,
+    TutorialScene
 }
 
 [System.Serializable]
@@ -22,6 +23,7 @@ public class PlayerData
 {
     public string playerID;
     public List<EndingData> endings;
+    public bool isFirst;
 }
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         data = new PlayerData();
 
         data.playerID = PlayerID;
+        data.isFirst = true;
         InitEndingData();
     }
     public void InitEndingData()

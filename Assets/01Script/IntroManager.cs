@@ -30,8 +30,14 @@ public class IntroManager : MonoBehaviour
     {
         if (hasPlayerInfo)
         {
-            GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
-            Debug.Log(GameManager.instance.Data.playerID);
+            if (GameManager.instance.Data.isFirst)
+            {
+                GameManager.instance.AsyncLoadNextScene(SceneName.TutorialScene);
+            }
+            else
+            {
+                GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
+            }
         }
         else
         {
