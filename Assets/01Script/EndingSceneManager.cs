@@ -12,7 +12,7 @@ public class EndingSceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private Button returnButton;
     [SerializeField] private Image fadeEffectImage;
-    [SerializeField] private RectTransform mask;
+    [SerializeField] private Image endImage;
 
     private RectTransform imageRectTransform;
     private float time;
@@ -58,6 +58,7 @@ public class EndingSceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(3.0f);
         returnButton.gameObject.SetActive(true);
+        endImage.gameObject.SetActive(true);
     }
     private void SetEndingImage(int endingIndex)
     {

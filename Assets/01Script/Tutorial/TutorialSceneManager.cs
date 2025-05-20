@@ -16,6 +16,9 @@ public class TutorialSceneManager : MonoBehaviour
     private bool isStop;
     private int infoImageIndex;
     private bool openInfo;
+    private bool isTalk;
+
+    public bool IsTalk { get => isTalk; }
     private void Awake()
     {
         TryGetComponent<DialogReader>(out dialogReader);

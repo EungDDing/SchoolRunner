@@ -95,15 +95,15 @@ public class SpawnObject : MonoBehaviour
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
             }
-            else if (spawnRate < 440)
+            else if (spawnRate < 435)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Vitamin, transform.position);
             }
-            else if (spawnRate < 450)
+            else if (spawnRate < 440)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Bandage, transform.position);
             }
-            else if (spawnRate < 460)
+            else if (spawnRate < 445)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Ball, transform.position);
             }

@@ -24,6 +24,8 @@ public class PlayerData
     public string playerID;
     public List<EndingData> endings;
     public bool isFirst;
+    public bool bgm;
+    public bool sfx;
 }
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 
         data.playerID = PlayerID;
         data.isFirst = true;
+        data.bgm = true;
+        data.sfx = true;
         InitEndingData();
     }
     public void InitEndingData()
