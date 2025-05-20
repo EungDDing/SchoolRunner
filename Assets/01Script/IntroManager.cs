@@ -8,12 +8,13 @@ public class IntroManager : MonoBehaviour
 {
     [SerializeField] private Image welcomeText;
     [SerializeField] private GameObject createPlayerPopup;
-
+    [SerializeField] private TMP_InputField idInputField;
     private bool hasPlayerInfo;
     private void Start()
     {
         InitTitleScene();
         StartCoroutine(BlinkWelcomeText());
+        idInputField.onValueChanged.AddListener(FilteringKorean);
     }
     private void InitTitleScene()
     {
@@ -72,6 +73,14 @@ public class IntroManager : MonoBehaviour
             yield return new WaitForSeconds(0.7f);
             welcomeText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.7f);
+        }
+    }
+    private void FilteringKorean(string input)
+    {
+        string filtered = System.Text.RegularExpressions.Regex.Replace(input, @"[\u1100-\u11FF\uAC00-\uD7AF\u3130-\u318F]", "");
+        if (filtered != input)
+        {
+            idInputField.text = filtered;
         }
     }
 }

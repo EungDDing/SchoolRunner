@@ -42,10 +42,14 @@ public class TutorialSceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isStop)
+        if ((Input.GetMouseButtonDown(0) || IsTouchBegan()) && isStop)
         {
             NextDialog();
         }
+    }
+    private bool IsTouchBegan()
+    {
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
     }
     private void ShowDialog(int index)
     {
