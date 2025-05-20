@@ -4,6 +4,7 @@ using UnityEngine;
 
 using UnityEngine.UI;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 public class UIManager : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image gameoverImage;
 
     [SerializeField] private Image pauseMenu;
+
+    [SerializeField] private RectTransform startImage;
 
     private bool isOpenAlbum;
     
@@ -145,6 +148,35 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         runCanvas.gameObject.SetActive(true);
+        StartCoroutine(ShowStartImage());
+    }
+    private IEnumerator ShowStartImage()
+    {
+        Vector2 start = startImage.anchoredPosition;
+        Vector2 end = new Vector2(0.0f, start.y);
+        float duration = 0.25f;
+        float time = 0.0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            startImage.anchoredPosition = Vector2.Lerp(start, end, time / duration);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        start = startImage.anchoredPosition;
+        end = new Vector2(-1000.0f, start.y);
+        duration = 0.25f;
+        time = 0.0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            startImage.anchoredPosition = Vector2.Lerp(start, end, time / duration);
+            yield return null;
+        }
     }
     public void ShowAlbum()
     {
@@ -251,7 +283,7 @@ public class UIManager : MonoBehaviour
                 inputPosition = Input.GetTouch(0).position;
             }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 50.0f))
             {
                 if (hit.collider.CompareTag("Config"))

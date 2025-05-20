@@ -75,6 +75,11 @@ public abstract class Obstacle : MonoBehaviour, IScroll
     {
         if (other.gameObject.CompareTag("HitBox"))
         {
+            ShakeCamera shakeCamera = Camera.main.GetComponent<ShakeCamera>();
+            if (shakeCamera != null)
+            {
+                StartCoroutine(shakeCamera.Shake(0.2f, 0.2f));
+            }
             playerController.TakeDamage(damage);
             rig.AddForce(flyDir * flyForce, ForceMode.Impulse);
             StartCoroutine(ReturnObstacle());

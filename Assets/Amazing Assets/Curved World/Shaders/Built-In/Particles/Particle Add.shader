@@ -4,7 +4,7 @@
 Shader "Amazing Assets/Curved World/Particles/Additive" 
 {
 Properties {
-    [HideInInspector][CurvedWorldBendSettings] _CurvedWorldBendSettings("0|1", Vector) = (0, 0, 0, 0)
+    [HideInInspector][CurvedWorldBendSettings] _CurvedWorldBendSettings("0,2|1", Vector) = (0, 0, 0, 0)
 
     _TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
     _MainTex ("Particle Texture", 2D) = "white" {}
@@ -29,7 +29,7 @@ Category {
 
             #include "UnityCG.cginc"
 
-#define CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_X_POSITIVE
+#pragma shader_feature_local CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_X_POSITIVE CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
 #define CURVEDWORLD_BEND_ID_1
 #pragma shader_feature_local CURVEDWORLD_DISABLED_ON
 #pragma shader_feature_local CURVEDWORLD_NORMAL_TRANSFORMATION_ON

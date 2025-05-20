@@ -329,7 +329,6 @@ public class PlayerController : MonoBehaviour
         GameObject ballObject = Instantiate(ballPrefabs, ballSpawnPosition.position, Quaternion.identity);
         Rigidbody ballRigidBody = ballObject.GetComponent<Rigidbody>();
         ballRigidBody.velocity = Vector3.forward * 20.0f;
-
         float timer = 0.0f;
         while (timer < duration)
         {

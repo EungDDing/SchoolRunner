@@ -19,6 +19,7 @@ public class RunningSceneManager : MonoBehaviour
         scrollManager = FindAnyObjectByType<ScrollManager>();
         stageManager = FindAnyObjectByType<StageManager>();
         GameManager.instance.TryGetPlayerData();
+        Time.timeScale = 1.0f;
     }
     public void StartGame()
     {
