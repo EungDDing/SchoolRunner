@@ -20,18 +20,52 @@ public class ToggleSwitch : MonoBehaviour
     private string on = "ON";
     private string off = "OFF";
 
+    private SoundType soundType;
     private void Start()
     {
+        if (gameObject.name == "BGMBackground")
+        {
+            soundType = SoundType.BGM;
+        }
+        else if (gameObject.name == "SFXBackground")
+        {
+            soundType = SoundType.SFX;
+        }
+
+        if (soundType == SoundType.BGM)
+        {
+            isOn = GameManager.instance.Data.bgm;
+        }
+        else if (soundType == SoundType.SFX)
+        {
+            isOn = GameManager.instance.Data.sfx;
+        }
+
+        Debug.Log(soundType);
         handleTransform = handleImage.GetComponent<RectTransform>();
         handleTransform.anchoredPosition = isOn ? onPosition : offPosition;
 
         fillAmount = isOn ? 1.0f : 0.0f;
         fillImage.fillAmount = fillAmount;
+
+        stateText.text = isOn ? on : off;
     }
     public void Toggle()
     {
         isOn = !isOn;
 
+        if (soundType == SoundType.BGM)
+        {
+            GameManager.instance.Data.bgm = isOn;
+            GameManager.instance.SaveData();
+        }
+        else if (soundType == SoundType.SFX)
+        {
+            GameManager.instance.Data.sfx = isOn;
+            GameManager.instance.SaveData();
+        }
+
+        Debug.Log(stateText.text);
         fillAmount = isOn ? 1.0f : 0.0f;
 
         Vector2 targetPos = isOn ? onPosition : offPosition;

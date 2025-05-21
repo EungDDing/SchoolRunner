@@ -12,6 +12,12 @@ public enum SceneName
     TutorialScene
 }
 
+public enum SoundType
+{ 
+    BGM,
+    SFX
+}
+
 [System.Serializable]
 public class EndingData
 {
@@ -89,7 +95,7 @@ public class GameManager : MonoBehaviour
     public void AsyncLoadNextScene(SceneName nextScene)
     {
         nextSceneName = nextScene;
-        SceneManager.LoadScene(nextScene.ToString());
+        ChangeSceneManager.instance.StartSceneChange(nextScene.ToString());
     }
     #endregion
     #region _Save&Load_
