@@ -91,6 +91,7 @@ public class TutorialUIManager : MonoBehaviour
     }
     public void GoLobby()
     {
+        Debug.Log("버튼 클릭 됨");
         GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
     }
 }

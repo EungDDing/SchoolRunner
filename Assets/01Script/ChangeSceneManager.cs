@@ -8,7 +8,7 @@ public class ChangeSceneManager : MonoBehaviour
     public static ChangeSceneManager instance;
 
     [SerializeField] private Animator changeSceneAnimator;
-    [SerializeField] private float changeTime = 4.0f;
+    [SerializeField] private float changeTime = 4.4f;
     private void Awake()
     {
         if (instance == null)
@@ -28,9 +28,11 @@ public class ChangeSceneManager : MonoBehaviour
     }
     private IEnumerator ChangeSceneCoroutine(string sceneName)
     {
+        Debug.Log("ChangeSceneCoroutine 시작됨");
+
         changeSceneAnimator.SetTrigger("Start");
 
-        yield return new WaitForSeconds(changeTime);
+        yield return new WaitForSecondsRealtime(changeTime);
 
         SceneManager.LoadScene(sceneName);
 
