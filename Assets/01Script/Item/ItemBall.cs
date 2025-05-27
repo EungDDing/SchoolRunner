@@ -11,6 +11,7 @@ public class ItemBall : ItemBase
     }
     public override void ItemGet()
     {
+        SoundManager.instance.PlaySFX(SFX_Type.SFX_Item);
         PlayerController.ShootBall();
     }
 

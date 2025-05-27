@@ -58,11 +58,13 @@ public class ToggleSwitch : MonoBehaviour
         {
             GameManager.instance.Data.bgm = isOn;
             GameManager.instance.SaveData();
+            SoundManager.instance.OnOffBGM(isOn);
         }
         else if (soundType == SoundType.SFX)
         {
             GameManager.instance.Data.sfx = isOn;
             GameManager.instance.SaveData();
+            SoundManager.instance.OnOffSFX(isOn);
         }
 
         Debug.Log(stateText.text);
