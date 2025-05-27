@@ -46,6 +46,11 @@ public class SoundManager : MonoBehaviour
     }
     private void Start()
     {
+        StartCoroutine(SetSoundConfig());
+    }
+    private IEnumerator SetSoundConfig()
+    {
+        yield return null;
         OnOffBGM(GameManager.instance.Data.bgm);
         OnOffSFX(GameManager.instance.Data.sfx);
     }
