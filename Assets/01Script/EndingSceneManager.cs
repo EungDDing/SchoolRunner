@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Ricimi;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -167,30 +168,37 @@ public class EndingSceneManager : MonoBehaviour
         switch (index)
         {
             case 0:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-383, 416);
                 secondScene = new Vector2(255, 334);
                 break;
             case 1:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-377, 682);
                 secondScene = new Vector2(191, -130);
                 break;
             case 2:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-335, 591);
                 secondScene = new Vector2(92, -277);
                 break;
             case 3:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(331, 297);
                 secondScene = new Vector2(-230, -711);
                 break;
             case 4:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-380, -22);
                 secondScene = new Vector2(122, -451);
                 break;
             case 5:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-17, -489);
                 secondScene = new Vector2(395, 156);
                 break;
             case 6:
+                SoundManager.instance.ChangeBGM((BGM_Type)index);
                 firstScene = new Vector2(-230, -190);
                 secondScene = new Vector2(-293, 360);
                 break;

@@ -11,6 +11,7 @@ public class ItemMic : ItemBase
     }
     public override void ItemGet()
     {
+        SoundManager.instance.PlaySFX(SFX_Type.SFX_Coin);
         ScoreManager.Mic++;
     }
 }

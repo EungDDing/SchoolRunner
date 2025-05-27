@@ -71,6 +71,7 @@ public class TutorialSceneManager : MonoBehaviour
     }
     IEnumerator GameStart()
     {
+        SoundManager.instance.ChangeBGM(BGM_Type.BGM_Running);
         playerController.InitPlayer();
         yield return new WaitForSeconds(3.0f);
         scrollManager.InitScrollManager(30.0f);
