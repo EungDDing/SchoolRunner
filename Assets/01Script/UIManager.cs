@@ -103,18 +103,51 @@ public class UIManager : MonoBehaviour
     public void ChangeDumbbellValue(int value)
     {
         dumbbellValue.text = value.ToString();
+        StartCoroutine(TextEffect(dumbbellValue));
     }
     public void ChangeStudyValue(int value)
     {
         bookValue.text = value.ToString();
+        StartCoroutine(TextEffect(bookValue));
     }
     public void ChangeSingValue(int value)
     {
         micValue.text = value.ToString();
+        StartCoroutine(TextEffect(micValue));
     }
     public void ChangeGameValue(int value)
     {
         gameValue.text = value.ToString();
+        StartCoroutine(TextEffect(gameValue));
+    }
+    private IEnumerator TextEffect(TextMeshProUGUI text)
+    {
+        Transform textTransform = text.transform;
+        Vector3 originalScale = textTransform.localScale;
+        Vector3 targetScale = originalScale * 1.3f;
+
+        float time = 0.0f;
+        float duration = 0.15f;
+
+        while (time < duration)
+        {
+            textTransform.localScale = Vector3.Lerp(originalScale, targetScale, time / duration);
+            time += Time.unscaledTime;
+            yield return null;
+        }
+
+        textTransform.localScale = targetScale;
+
+        time = 0.0f;
+
+        while (time < duration)
+        {
+            textTransform.localScale = Vector3.Lerp(targetScale, originalScale, time / duration);
+            time += Time.unscaledTime;
+            yield return null;
+        }
+
+        textTransform.localScale = originalScale;
     }
     public void ChangeHeart(int hp)
     {
