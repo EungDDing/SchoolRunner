@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image configPopup;
     [SerializeField] private Button configButton;
     [SerializeField] private Button configCloseButton;
+    [SerializeField] private Button tutorialButton;
 
     [SerializeField] private Image gameConfigPopup;
     [SerializeField] private Button gameConfigCloseButton;
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour
 
         configButton.onClick.AddListener(OpenConfigPopup);
         configCloseButton.onClick.AddListener(CloseConfigPopup);
+        tutorialButton.onClick.AddListener(GoTutorial);
     }
     private void OnEnable()
     {
@@ -195,7 +197,7 @@ public class UIManager : MonoBehaviour
     {
         float time = 0.0f;
         float percent = 0.0f;
-        float fadeOutTime = 2.0f;
+        float fadeOutTime = 0.5f;
 
         while (percent < 1.0f)
         {
@@ -257,6 +259,10 @@ public class UIManager : MonoBehaviour
     public void GoLobby()
     {
         GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
+    }
+    public void GoTutorial()
+    {
+        GameManager.instance.AsyncLoadNextScene(SceneName.TutorialScene);
     }
     public void OpenPauseMenu()
     {

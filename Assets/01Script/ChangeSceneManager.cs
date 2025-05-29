@@ -9,6 +9,8 @@ public class ChangeSceneManager : MonoBehaviour
 
     [SerializeField] private Animator changeSceneAnimator;
     [SerializeField] private float changeTime = 4.4f;
+
+    private bool isChange;
     private void Awake()
     {
         if (instance == null)
@@ -20,14 +22,21 @@ public class ChangeSceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        isChange = false;
     }
 
     public void StartSceneChange(string sceneName)
     {
-        StartCoroutine(ChangeSceneCoroutine(sceneName));
+        if (isChange == false)
+        {
+            StartCoroutine(ChangeSceneCoroutine(sceneName));
+        }   
     }
     private IEnumerator ChangeSceneCoroutine(string sceneName)
     {
+        isChange = true;
+
         Debug.Log("ChangeSceneCoroutine 시작됨");
 
         changeSceneAnimator.SetTrigger("Start");
@@ -38,5 +47,7 @@ public class ChangeSceneManager : MonoBehaviour
 
         yield return null;
         changeSceneAnimator.SetTrigger("End");
+
+        isChange = false;
     }
 }

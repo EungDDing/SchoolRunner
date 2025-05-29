@@ -14,6 +14,7 @@ public class RunningSceneManager : MonoBehaviour
     }
     public void LoadSceneInit()
     {
+        SoundManager.instance.ChangeBGM(BGM_Type.BGM_Lobby);
         playerController = FindAnyObjectByType<PlayerController>();
         scoreManager = FindAnyObjectByType<ScoreManager>();
         scrollManager = FindAnyObjectByType<ScrollManager>();
@@ -27,6 +28,7 @@ public class RunningSceneManager : MonoBehaviour
     }
     IEnumerator GameStart()
     {
+        SoundManager.instance.ChangeBGM(BGM_Type.BGM_Running);
         playerController.InitPlayer();
         stageManager.InitStageManager();
         yield return new WaitForSeconds(3.0f);

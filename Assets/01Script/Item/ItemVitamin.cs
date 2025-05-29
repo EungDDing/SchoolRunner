@@ -35,6 +35,7 @@ public class ItemVitamin : ItemBase
     }
     public override void ItemGet()
     {
+        SoundManager.instance.PlaySFX(SFX_Type.SFX_Item);
         PlayerController.SetInvincible();
     }
 }
