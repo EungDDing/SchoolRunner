@@ -124,7 +124,7 @@ public class UIManager : MonoBehaviour
     {
         Transform textTransform = text.transform;
         Vector3 originalScale = textTransform.localScale;
-        Vector3 targetScale = originalScale * 1.3f;
+        Vector3 targetScale = originalScale * 2.0f;
 
         float time = 0.0f;
         float duration = 0.15f;
@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
         while (time < duration)
         {
             textTransform.localScale = Vector3.Lerp(originalScale, targetScale, time / duration);
-            time += Time.unscaledTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
         while (time < duration)
         {
             textTransform.localScale = Vector3.Lerp(targetScale, originalScale, time / duration);
-            time += Time.unscaledTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
