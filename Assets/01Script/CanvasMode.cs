@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasMode : MonoBehaviour
 {
     private void Start()
     {
-        StartCoroutine(SetCanvasMode());
+        // StartCoroutine(SetCanvasMode());
     }
 
     private IEnumerator SetCanvasMode()
@@ -22,5 +23,17 @@ public class CanvasMode : MonoBehaviour
             canvas.worldCamera = Camera.main;
             Debug.Log("Canvas에 카메라 연결 완료!");
         }
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += ChangeScene;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= ChangeScene;
+    }
+    private void ChangeScene(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        StartCoroutine(SetCanvasMode());
     }
 }
