@@ -9,7 +9,10 @@ public enum StageNumber
     Stage02,
     Stage03,
     Stage04,
-    Bridge
+    Bridge01,
+    Bridge02,
+    Bridge03,
+    Bridge04
 }
 
 public class Stage : MonoBehaviour, IScroll
@@ -85,9 +88,21 @@ public class Stage : MonoBehaviour, IScroll
         {
             stageNumber = StageNumber.Stage04;
         }
-        else if (name.Contains("Bridge"))
+        else if (name.Contains("Bridge01"))
         {
-            stageNumber = StageNumber.Bridge;
+            stageNumber = StageNumber.Bridge01;
+        }
+        else if (name.Contains("Bridge02"))
+        {
+            stageNumber = StageNumber.Bridge02;
+        }
+        else if (name.Contains("Bridge03"))
+        {
+            stageNumber = StageNumber.Bridge03;
+        }
+        else if (name.Contains("BridgeLong"))
+        {
+            stageNumber = StageNumber.Bridge04;
         }
     }
     private void OnTriggerEnter(Collider other)
