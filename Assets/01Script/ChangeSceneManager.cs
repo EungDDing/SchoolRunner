@@ -37,16 +37,24 @@ public class ChangeSceneManager : MonoBehaviour
     {
         isChange = true;
 
-        Debug.Log("ChangeSceneCoroutine 시작됨");
+        if (sceneName != "EndingScene")
+        {
+            Debug.Log("ChangeSceneCoroutine 시작됨");
 
-        changeSceneAnimator.SetTrigger("Start");
+            changeSceneAnimator.SetTrigger("Start");
 
-        yield return new WaitForSecondsRealtime(changeTime);
+            yield return new WaitForSecondsRealtime(changeTime);
 
-        SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneName);
 
-        yield return null;
-        changeSceneAnimator.SetTrigger("End");
+            yield return null;
+            changeSceneAnimator.SetTrigger("End");
+
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
 
         isChange = false;
     }

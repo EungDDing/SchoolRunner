@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
         jumpForce = 25.0f;
         Stage.OnChangeStageCount += ChangeStageCount;
 
-        ChangeCharacter(0);
+        currentCharacter = characters[0];
+        animator = currentCharacter.GetComponent<Animator>();
     }
     private void Update()
     {
@@ -80,10 +81,7 @@ public class PlayerController : MonoBehaviour
             MoveSide();
             Jump();
             HandleTouchInput();
-            if (stageCount < 20)
-            {
-                ChangeCharacter(stageCount / 5);
-            } 
+            
         } 
     }
     private void OnDisable()
@@ -354,8 +352,10 @@ public class PlayerController : MonoBehaviour
         }
         Destroy(ballObject);
     }
-    private void ChangeCharacter(int index)
-    { 
+    private IEnumerator ChangeCharacter(int index)
+    {
+        yield return new WaitForSeconds(2.0f);
+
         for (int i = 0; i < characters.Length; i++)
         {
             characters[i].SetActive(i == index);
@@ -363,9 +363,15 @@ public class PlayerController : MonoBehaviour
 
         currentCharacter = characters[index];
         animator = currentCharacter.GetComponent<Animator>();
+        playerRenderers = GetComponentsInChildren<Renderer>();
     }
     private void ChangeStageCount()
     {
         stageCount++;
+
+        if (stageCount < 20)
+        {
+            StartCoroutine(ChangeCharacter(stageCount / 5));
+        }
     }
 }
