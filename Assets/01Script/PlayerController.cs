@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem healParticle;
     [SerializeField] private ParticleSystem invincibleParticle;
 
+    [SerializeField] private GameObject[] characters;
+    private GameObject currentCharacter;
+
     private Renderer[] playerRenderers;
     private Animator animator; 
     private float forwardSpeed = 20.0f;
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isTutorial;
 
+    private int stageCount;
+
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
 
@@ -56,8 +61,12 @@ public class PlayerController : MonoBehaviour
         TryGetComponent<Animator>(out animator);
         playerRenderers = GetComponentsInChildren<Renderer>();
         CurrentHP = maxHP;
+        stageCount = 0;
         moveSpeed = 12.0f;
         jumpForce = 25.0f;
+        Stage.OnChangeStageCount += ChangeStageCount;
+
+        ChangeCharacter(0);
     }
     private void Update()
     {
@@ -71,7 +80,15 @@ public class PlayerController : MonoBehaviour
             MoveSide();
             Jump();
             HandleTouchInput();
+            if (stageCount < 20)
+            {
+                ChangeCharacter(stageCount / 5);
+            } 
         } 
+    }
+    private void OnDisable()
+    {
+        Stage.OnChangeStageCount -= ChangeStageCount;
     }
     public void InitPlayer()
     {
@@ -336,5 +353,19 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         Destroy(ballObject);
+    }
+    private void ChangeCharacter(int index)
+    { 
+        for (int i = 0; i < characters.Length; i++)
+        {
+            characters[i].SetActive(i == index);
+        }
+
+        currentCharacter = characters[index];
+        animator = currentCharacter.GetComponent<Animator>();
+    }
+    private void ChangeStageCount()
+    {
+        stageCount++;
     }
 }

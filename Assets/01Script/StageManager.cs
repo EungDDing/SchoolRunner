@@ -74,7 +74,22 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            return StageNumber.Bridge;
+            if (index == 0)
+            {
+                return StageNumber.Bridge01;
+            }
+            else if (index == 1)
+            {
+                return StageNumber.Bridge02;
+            }
+            else if (index == 2)
+            {
+                return StageNumber.Bridge03;
+            }
+            else
+            {
+                return StageNumber.Bridge04;
+            }
         }
     }
 }
