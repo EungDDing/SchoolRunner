@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject[] characters;
     private GameObject currentCharacter;
 
+    [SerializeField] private RectTransform imageTransform;
+
     private Renderer[] playerRenderers;
     private Animator animator; 
     private float forwardSpeed = 20.0f;
@@ -41,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     private int stageCount;
 
+    private Quaternion startRot;
+    private Quaternion targetRot;
+
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
 
@@ -64,6 +69,10 @@ public class PlayerController : MonoBehaviour
         stageCount = 0;
         moveSpeed = 12.0f;
         jumpForce = 25.0f;
+
+        startRot = transform.rotation;
+        targetRot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
         Stage.OnChangeStageCount += ChangeStageCount;
 
         currentCharacter = characters[0];
@@ -74,6 +83,9 @@ public class PlayerController : MonoBehaviour
         if (isGameStart)
         {
             transform.position += Vector3.forward * (forwardSpeed * Time.deltaTime);
+            
+            currentCharacter.transform.rotation = Quaternion.Lerp(startRot, targetRot, Time.deltaTime * 5.0f);
+
             animator.SetBool("Start", true);
         }
         if (isInit && !isStop)
@@ -354,7 +366,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator ChangeCharacter(int index)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return StartCoroutine(ChangeImage(true, 2.0f));
 
         for (int i = 0; i < characters.Length; i++)
         {
@@ -364,14 +376,35 @@ public class PlayerController : MonoBehaviour
         currentCharacter = characters[index];
         animator = currentCharacter.GetComponent<Animator>();
         playerRenderers = GetComponentsInChildren<Renderer>();
+
+        yield return StartCoroutine(ChangeImage(false, 2.0f));
     }
     private void ChangeStageCount()
     {
         stageCount++;
 
-        if (stageCount < 20)
+        if (stageCount == 5 || stageCount == 10 || stageCount == 15)
         {
+            
             StartCoroutine(ChangeCharacter(stageCount / 5));
         }
+    }
+    private IEnumerator ChangeImage(bool on, float duration)
+    {
+        float time = 0.0f;
+        float startScale = on ? 0.0f : 7.0f;
+        float endScale = on ? 7.0f : 0.0f;
+
+        while (time < duration)
+        {
+            float t = time / duration;
+            float scale = Mathf.Lerp(startScale, endScale, t);
+            imageTransform.localScale = new Vector3(scale, scale, scale);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        imageTransform.localScale = new Vector3(endScale, endScale, endScale);
     }
 }
