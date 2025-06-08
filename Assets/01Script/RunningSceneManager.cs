@@ -8,6 +8,8 @@ public class RunningSceneManager : MonoBehaviour
     private ScoreManager scoreManager;
     private ScrollManager scrollManager;
     private StageManager stageManager;
+
+    [SerializeField] private ParticleSystem lobbyParticle; 
     private void Start()
     {
         LoadSceneInit();
@@ -24,6 +26,7 @@ public class RunningSceneManager : MonoBehaviour
     }
     public void StartGame()
     {
+        lobbyParticle.Stop();
         StartCoroutine(GameStart());
     }
     IEnumerator GameStart()

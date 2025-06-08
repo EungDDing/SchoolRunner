@@ -79,31 +79,35 @@ public class SpawnObject : MonoBehaviour
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookShelf, transform.position);
             }
-            else if (spawnRate < 280)
+            else if (spawnRate < 250)
+            {
+                SpawnObjectManager.instance.SpawnObject((int)ObjectType.Bench, transform.position);
+            }
+            else if (spawnRate < 300)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.DumbbellCoin, transform.position);
             }
-            else if (spawnRate < 330)
+            else if (spawnRate < 350)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.BookCoin, transform.position);
             }
-            else if (spawnRate < 380)
+            else if (spawnRate < 400)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.MicCoin, transform.position);
             }
-            else if (spawnRate < 430)
+            else if (spawnRate < 450)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.GameCoin, transform.position);
             }
-            else if (spawnRate < 435)
+            else if (spawnRate < 455)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Vitamin, transform.position);
             }
-            else if (spawnRate < 440)
+            else if (spawnRate < 460)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Bandage, transform.position);
             }
-            else if (spawnRate < 445)
+            else if (spawnRate < 465)
             {
                 SpawnObjectManager.instance.SpawnObject((int)ObjectType.Ball, transform.position);
             }

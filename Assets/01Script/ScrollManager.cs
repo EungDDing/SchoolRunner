@@ -29,10 +29,12 @@ public class ScrollManager : MonoBehaviour
     private void OnEnable()
     {
         playerController.OnGameOver += StopScroll;
+        UIManager.OnGoLobby += StopScroll;
     }
     private void OnDisable()
     {
         playerController.OnGameOver -= StopScroll;
+        UIManager.OnGoLobby -= StopScroll;
     }
     public void AddScrollObject(IScroll scrollObject)
     {

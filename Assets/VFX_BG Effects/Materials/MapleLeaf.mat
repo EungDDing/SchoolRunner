@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MapleLeaf
-  m_Shader: {fileID: 4800000, guid: 719aab9de77ab0e44a9661c3430a842f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2b02ff58d507c6a478f8b1a00964a56d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -50,6 +50,7 @@ Material:
     - _Depthpower: 1
     - _Emission: 1
     - _InvFade: 1
+    - _Opacity: 1
     - _Usecenterglow: 0
     - _Usecustomrandom: 0
     - _Usedepth: 0
