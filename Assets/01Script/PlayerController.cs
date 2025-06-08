@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerController;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currentCharacter;
 
     [SerializeField] private RectTransform imageTransform;
-
+    
     private Renderer[] playerRenderers;
     private Animator animator; 
     private float forwardSpeed = 20.0f;
@@ -48,6 +49,9 @@ public class PlayerController : MonoBehaviour
 
     public delegate void ChangeHP(int hp);
     public event ChangeHP OnChangeHP;
+
+    public delegate void UIChangeCharacter();
+    public event UIChangeCharacter OnChangeCharacter;
 
     public delegate void GameOver();
     public event GameOver OnGameOver;
@@ -388,7 +392,6 @@ public class PlayerController : MonoBehaviour
 
         if (stageCount == 5 || stageCount == 10 || stageCount == 15)
         {
-            
             StartCoroutine(ChangeCharacter(stageCount / 5));
         }
     }
@@ -401,6 +404,7 @@ public class PlayerController : MonoBehaviour
         if (on)
         {
             yield return new WaitForSeconds(1.5f);
+            OnChangeCharacter?.Invoke();
         }
         while (time < duration)
         {

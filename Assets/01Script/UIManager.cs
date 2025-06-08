@@ -4,7 +4,6 @@ using UnityEngine;
 
 using UnityEngine.UI;
 using TMPro;
-using static UnityEngine.GraphicsBuffer;
 
 public class UIManager : MonoBehaviour
 {
@@ -40,6 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image pauseMenu;
 
     [SerializeField] private RectTransform startImage;
+    [SerializeField] private RectTransform levelImage;
 
     private bool isOpenAlbum;
     
@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
     private GameObject obj;
     private GameObject albumPanel;
 
+    public delegate void UIGoLobby();
+    public static UIGoLobby OnGoLobby;
     private void Awake()
     {
         obj = GameObject.FindGameObjectWithTag("Player");
@@ -85,6 +87,7 @@ public class UIManager : MonoBehaviour
         playerController.OnChangeHP += ChangeHeart;
         scoreManager.OnGameEnd += FadeOutScreen;
         playerController.OnGameOver += GameOver;
+        playerController.OnChangeCharacter += LevelUp;
     }
     private void OnDisable()
     {
@@ -95,6 +98,7 @@ public class UIManager : MonoBehaviour
         playerController.OnChangeHP -= ChangeHeart;
         scoreManager.OnGameEnd -= FadeOutScreen;
         playerController.OnGameOver -= GameOver;
+        playerController.OnChangeCharacter -= LevelUp;
     }
     private void Update()
     {
@@ -213,6 +217,38 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
     }
+    private IEnumerator ShowLevelImage()
+    {
+        Vector2 basic = levelImage.anchoredPosition;
+
+        Vector2 start = levelImage.anchoredPosition;
+        Vector2 end = new Vector2(0.0f, start.y);
+        float duration = 0.25f;
+        float time = 0.0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            levelImage.anchoredPosition = Vector2.Lerp(start, end, time / duration);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        start = levelImage.anchoredPosition;
+        end = new Vector2(-1000.0f, start.y);
+        duration = 0.25f;
+        time = 0.0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            levelImage.anchoredPosition = Vector2.Lerp(start, end, time / duration);
+            yield return null;
+        }
+
+        levelImage.anchoredPosition = basic;
+    }
     public void ShowAlbum()
     {
         isOpenAlbum = !isOpenAlbum;
@@ -291,6 +327,7 @@ public class UIManager : MonoBehaviour
     }
     public void GoLobby()
     {
+        OnGoLobby?.Invoke();
         GameManager.instance.AsyncLoadNextScene(SceneName.RunningScene);
     }
     public void GoTutorial()
@@ -335,5 +372,10 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+    }
+    public void LevelUp()
+    {
+        levelImage.gameObject.SetActive(true);
+        StartCoroutine(ShowLevelImage());
     }
 }
