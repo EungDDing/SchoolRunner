@@ -281,6 +281,8 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        SoundManager.instance.PlaySFX(SFX_Type.SFX_Damaged);
+
         if (!isInvincible)
         {
             isInvincible = true;
@@ -289,6 +291,7 @@ public class PlayerController : MonoBehaviour
             CurrentHP -= damage;
             if (CurrentHP <= 0)
             {
+                SoundManager.instance.PlaySFX(SFX_Type.SFX_GameOver);
                 // game over
                 OnGameOver?.Invoke();
                 isStop = true;
@@ -366,7 +369,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator ChangeCharacter(int index)
     {
-        yield return StartCoroutine(ChangeImage(true, 2.0f));
+        yield return StartCoroutine(ChangeImage(true, 0.5f));
 
         for (int i = 0; i < characters.Length; i++)
         {
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour
         animator = currentCharacter.GetComponent<Animator>();
         playerRenderers = GetComponentsInChildren<Renderer>();
 
-        yield return StartCoroutine(ChangeImage(false, 2.0f));
+        yield return StartCoroutine(ChangeImage(false, 0.5f));
     }
     private void ChangeStageCount()
     {
@@ -392,9 +395,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ChangeImage(bool on, float duration)
     {
         float time = 0.0f;
-        float startScale = on ? 0.0f : 7.0f;
-        float endScale = on ? 7.0f : 0.0f;
-
+        float startScale = on ? 0.0f : 15.0f;
+        float endScale = on ? 15.0f : 0.0f;
+        
+        if (on)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
         while (time < duration)
         {
             float t = time / duration;

@@ -4140,15 +4140,15 @@ MonoBehaviour:
   audioMaster: {fileID: 24100000, guid: 929e0f5e2527fbf47b5943d183468965, type: 2}
   bgmPlayer: {fileID: 2103344366}
   bgmList:
-  - {fileID: 8300000, guid: a22bf548d9d6b4ac9b2863f55a105c73, type: 3}
   - {fileID: 8300000, guid: 82d3052c2b3e94d8883fd8ed4c9336bc, type: 3}
+  - {fileID: 8300000, guid: 9d6dae57ca3da9b469bf4735eaee4e38, type: 3}
   - {fileID: 8300000, guid: e5ac89029e1964468b814fa6b0fd9594, type: 3}
   - {fileID: 8300000, guid: 0f8a5557488ee4e3bb0f18e9d685d963, type: 3}
   - {fileID: 8300000, guid: 26090f3acaa8f4960a9320e535a85b8a, type: 3}
   - {fileID: 8300000, guid: 79c50082496134971b5241f508610a00, type: 3}
   - {fileID: 8300000, guid: 2ef788f73036547a78352b07dcb85c4f, type: 3}
-  - {fileID: 8300000, guid: 03da9dcaf0ff24aac9675fcaff88eb19, type: 3}
-  - {fileID: 8300000, guid: abe360bd010754292b92b937bca48a4b, type: 3}
+  - {fileID: 8300000, guid: d818d1eba1035bc4a8889e37f6b394fc, type: 3}
+  - {fileID: 8300000, guid: 2e674ed0241d6fa4b86d1cca51a08637, type: 3}
   sfxPlayer:
   - {fileID: 1446245000}
   - {fileID: 1221826959}
@@ -12923,7 +12923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00048828125, y: 89069600}
+  m_AnchoredPosition: {x: -0.00048828125, y: 90493600}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1953706817

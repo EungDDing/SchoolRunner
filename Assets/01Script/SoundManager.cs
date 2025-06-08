@@ -19,7 +19,9 @@ public enum SFX_Type
 {
     SFX_Coin,
     SFX_Item,
-    SFX_Click
+    SFX_Damaged,
+    SFX_SceneChange,
+    SFX_GameOver
 }
 public class SoundManager : MonoBehaviour
 {

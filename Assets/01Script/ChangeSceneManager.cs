@@ -41,6 +41,7 @@ public class ChangeSceneManager : MonoBehaviour
         {
             Debug.Log("ChangeSceneCoroutine 시작됨");
 
+            SoundManager.instance.PlaySFX(SFX_Type.SFX_SceneChange);
             changeSceneAnimator.SetTrigger("Start");
 
             yield return new WaitForSecondsRealtime(changeTime);
