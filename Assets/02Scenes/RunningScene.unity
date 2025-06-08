@@ -12923,7 +12923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00048828125, y: 87753600}
+  m_AnchoredPosition: {x: -0.00048828125, y: 87987200}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1953706817
@@ -75283,8 +75283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: {fileID: 121921091871584389}
-  blinkBlendShapeIndex: 0
-  blinkDuration: 0.5
+  animator: {fileID: 3132222865588588378}
 --- !u!4 &6997436302511293735
 Transform:
   m_ObjectHideFlags: 0
@@ -77018,8 +77017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: {fileID: 7974205181352402167}
-  blinkBlendShapeIndex: 0
-  blinkDuration: 0.5
+  animator: {fileID: 3132222865588588378}
 --- !u!1 &8005825278149287831
 GameObject:
   m_ObjectHideFlags: 0
@@ -83382,8 +83380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: {fileID: 4088767578528343453}
-  blinkBlendShapeIndex: 0
-  blinkDuration: 0.5
+  animator: {fileID: 3132222865588588378}
 --- !u!1 &8845407737835170282
 GameObject:
   m_ObjectHideFlags: 0
