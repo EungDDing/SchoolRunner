@@ -9,7 +9,12 @@ public class RunningSceneManager : MonoBehaviour
     private ScrollManager scrollManager;
     private StageManager stageManager;
 
-    [SerializeField] private ParticleSystem lobbyParticle; 
+    [SerializeField] private ParticleSystem lobbyParticle;
+
+    private void Awake()
+    {
+        QualitySettings.shadowDistance = 30.0f;
+    }
     private void Start()
     {
         LoadSceneInit();
@@ -31,6 +36,7 @@ public class RunningSceneManager : MonoBehaviour
     }
     IEnumerator GameStart()
     {
+        QualitySettings.shadowDistance = 100.0f;
         SoundManager.instance.ChangeBGM(BGM_Type.BGM_Running);
         playerController.InitPlayer();
         stageManager.InitStageManager();

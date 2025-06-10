@@ -107,7 +107,7 @@ public class SoundManager : MonoBehaviour
         GameManager.instance.Data.bgm = isOn;
         GameManager.instance.SaveData();
 
-        float volume = isOn ? 0f : -80f;
+        float volume = isOn ? -5f : -80f;
         audioMaster.SetFloat("BGM", volume);
     }
 

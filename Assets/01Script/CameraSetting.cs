@@ -11,7 +11,11 @@ public class CameraSetting : MonoBehaviour
 
     private Vector3 targetPos;
     private bool isStart = false;
-    
+
+    private void Awake()
+    {
+        Camera.main.fieldOfView = 55.0f;
+    }
     private void Update()
     {
         if (isStart)
@@ -32,6 +36,9 @@ public class CameraSetting : MonoBehaviour
         Vector3 endPos = eventTargetPos.position;
         Quaternion endRot = eventTargetPos.rotation;
 
+        float startFOV = Camera.main.fieldOfView;
+        float endFOV = 65.0f;
+
         float elapsed = 0.0f;
 
         while (elapsed < duration)
@@ -41,12 +48,15 @@ public class CameraSetting : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, endPos, curve.Evaluate(t));
             transform.rotation = Quaternion.Lerp(startRot, endRot, curve.Evaluate(t));
 
+            Camera.main.fieldOfView = Mathf.Lerp(startFOV, endFOV, curve.Evaluate(t));
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         transform.position = endPos;
         transform.rotation = endRot;
+        Camera.main.fieldOfView = endFOV;
 
         isStart = true;
     }

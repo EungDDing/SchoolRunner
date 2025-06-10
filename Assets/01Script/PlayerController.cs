@@ -150,11 +150,35 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (!isMove)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 2)
+            {
+                // if player is jumping, can move once
+                if (!isJump || (isJump && !isMoveOnce))
+                {
+                    currentLane++;
+                    if (isJump)
+                        isMoveOnce = true;
+                    isMove = true;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentLane > 0)
+            {
+                if (!isJump || (isJump && !isMoveOnce))
+                {
+                    currentLane--;
+                    if (isJump)
+                        isMoveOnce = true;
+                    isMove = true;
+                }
+            }
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
         }
-
 
         targetPosition = new Vector3(lanes[currentLane], transform.position.y, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, (moveSpeed * Time.deltaTime));
@@ -184,7 +208,7 @@ public class PlayerController : MonoBehaviour
                 {
                     // animation test
                     animator.SetTrigger("Jump");
-                    
+
                     rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     isJump = true;
 
@@ -194,6 +218,21 @@ public class PlayerController : MonoBehaviour
                 isDrag = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (!isJump)
+            {
+                // animation test
+                animator.SetTrigger("Jump");
+
+                rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isJump = true;
+
+                runParticle.Stop();
+            }
+        }
+
 
         if (Input.GetMouseButtonUp(0))
         {
